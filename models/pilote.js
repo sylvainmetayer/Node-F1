@@ -13,7 +13,7 @@ module.exports.getListPilotes = function (callback) {
 };
 
 module.exports.getPiloteByLetter = function(lettre, callback) {
-  console.log("SQL LETTRE : " + lettre);
+  //console.log("SQL LETTRE : " + lettre);
     db.getConnection(function(err, connexion) {
       if (!err) {
         var sql = "SELECT pilnom, pilprenom, phoadresse, phocommentaire FROM pilote p ";
@@ -25,4 +25,12 @@ module.exports.getPiloteByLetter = function(lettre, callback) {
         connexion.release();
       }
     });
+}
+
+module.exports.getPilote = function(pilote, callback) {
+	db.getConnection(function(err, connexion) {
+		if (!err) {
+			var sql = "SELECT "
+		}
+	})
 }

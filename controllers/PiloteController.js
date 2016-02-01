@@ -10,7 +10,7 @@ module.exports.Repertoire = function(request, response) {
             return;
         }
        response.lettrePilote = result;
-       console.log("RESULTAT : " +result);
+       //console.log("RESULTAT : " +result);
        response.render('repertoirePilotes', response);
         });
   } ;
@@ -18,7 +18,7 @@ module.exports.Repertoire = function(request, response) {
   /**
   Permet de retourner les pilotes, selon la premiere lettre de leur nom
   */
-  module.exports.listByLetter = function(request, response) {
+  module.exports.RepertoireByLetter = function(request, response) {
     var lettre = request.params.lettre;
     response.title = 'Liste des pilotes';
 
@@ -34,9 +34,25 @@ module.exports.Repertoire = function(request, response) {
            return;
          }
          response.lettrePilote = resultat;
-         console.log(response);
+         //console.log(response);
          response.render('repertoirePilotes', response);
        })
 
         });
   } ;
+
+  module.exports.GetPilote = function(request, response) {
+    var pilote = request.params.pilote;
+    reponse.title = "Détails d'un pilote";
+
+    model.getPilote(pilote, function(err, result) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+
+      response.detailsPilote = result;
+      response.render('detailsPilote', response);
+    })
+
+  };
