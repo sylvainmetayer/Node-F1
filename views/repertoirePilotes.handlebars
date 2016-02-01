@@ -24,12 +24,38 @@
       {{#each listePilote}}
        <tr>
          <td>
-           <img with="90" height="90" src="/image/pilote/{{this.phoadresse}}" alt="{{this.phocommentaire}}"/>
+           <a href="/pilote/{{this.pilnum}}">
+             <img with="90" height="90" src="/image/pilote/{{this.phoadresse}}" alt="{{this.phocommentaire}}"/>
+           </a>
          </td>
-         <td> {{this.pilnom}} {{this.pilprenom}} </td>
+         <td>
+           <a href="/pilote/{{this.pilnum}}">
+             {{this.pilnom}} {{this.pilprenom}}
+           </a>
+         </td>
        </tr>
       {{/each}}
 
   </table>
+{{/if}}
+
+{{#if pilote}}
+    <img src="/image/pilote/{{pilote.pĥoadresse}}" alt="{{pilote.phocommentaire}}" />
+    Nom : {{pilote.pilnom}} {{pilote.pilprenom}}
+    <br/>
+    Date de naissance : {{pilote.pildatenais}}
+    <br/>
+    Nationalité : {{pilote.paynom}}
+    <br/>
+    Poids : {{pilote.pilpoids}}
+    <br/>
+    Taille : {{pilote.piltaille}}
+    <br/>
+    Principaux Sponsors :
+    TODO
+
+    <br/>
+    Qui suis-je ?<br/>
+    {{pilote.piltexte}}
 {{/if}}
 </center>

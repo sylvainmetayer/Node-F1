@@ -16,7 +16,7 @@ module.exports.getPiloteByLetter = function(lettre, callback) {
   //console.log("SQL LETTRE : " + lettre);
     db.getConnection(function(err, connexion) {
       if (!err) {
-        var sql = "SELECT pilnom, pilprenom, phoadresse, phocommentaire FROM pilote p ";
+        var sql = "SELECT pilnom, pilprenom, p.pilnum, phoadresse, phocommentaire FROM pilote p ";
         sql += " INNER JOIN photo ph on ph.pilnum=p.pilnum ";
         sql += " WHERE SUBSTR(pilnom, 1, 1) = '" + lettre + "'";
         //console.log(sql);
@@ -30,7 +30,13 @@ module.exports.getPiloteByLetter = function(lettre, callback) {
 module.exports.getPilote = function(pilote, callback) {
 	db.getConnection(function(err, connexion) {
 		if (!err) {
-			var sql = "SELECT "
+			var sql = "SELECT phocommentaire, phoadresse, p.pilnum, p.pilnom, p.pilprenom, paynom, p.pildatenais, pilpoids, piltaille, piltexte";
+			sql += " FROM pilote p JOIN pays pa on pa.paynum=p.paynum ";
+			sql += " JOIN photo ph on ph.pilnum=p.pilnum"
+			sql += " WHERE p.pilnum=" + pilote;
+
+			connexion.query(sql, callback);
+			connexion.release();
 		}
 	})
 }
