@@ -12,6 +12,7 @@ module.exports = function(app){
 
 // pilotes
     app.get('/repertoirePilote', PiloteController.Repertoire);
+    app.get('/repertoirePilote/:lettre', PiloteController.listByLetter);
 
  // circuits
    app.get('/circuits', CircuitController.ListerCircuit);
@@ -21,6 +22,7 @@ module.exports = function(app){
 
  //Résultats
    app.get('/resultats', ResultatController.ListerResultat);
+
 
 
 // tout le reste

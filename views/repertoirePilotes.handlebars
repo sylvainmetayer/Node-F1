@@ -1,1 +1,35 @@
 <h1> Mettre ici la première lettre du nom des pilotes </h1>
+
+<p>Cliquez sur une lettre</p>
+
+<center>
+{{#if lettrePilote}}
+  <table class="text-center">
+    <tr>
+      {{#each lettrePilote}}
+        <td>
+          <a href="/repertoirePilote/{{this.firstLetter}}"> {{this.firstLetter}}</a>
+        </td>
+      {{/each}}
+    </tr>
+  </table>
+{{/if}}
+
+{{#if listePilote}}
+  <table class="text-center">
+    <tr>
+      <th>Photo</th>
+      <th>Nom / Prenom</th>
+    </tr>
+      {{#each listePilote}}
+       <tr>
+         <td>
+           <img with="90" height="90" src="/image/pilote/{{this.phoadresse}}" alt="{{this.phocommentaire}}"/>
+         </td>
+         <td> {{this.pilnom}} {{this.pilprenom}} </td>
+       </tr>
+      {{/each}}
+
+  </table>
+{{/if}}
+</center>
