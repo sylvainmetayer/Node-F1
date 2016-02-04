@@ -1,0 +1,28 @@
+{{#if ecurie }}
+  <img class="small left" src="/image/ecurie/{{ecurie.ecuadresseimage}}" alt="Image de l'écurie" />
+  Nom : {{ecurie.ecunom}} <br/>
+  Directeur : {{ecurie.ecunomdir}} <br/>
+  Adresse : {{ecurie.ecuadrsiege}} <br/>
+  Pays : {{ecurie.paynom}} <br/>
+  Fournisseur de pneumatiques : {{ecurie.fpnom}} <br/>
+  <p>Sponsors :TODO <!-- TODO--></p>
+
+  <p>PILOTE <!-- FIXME -->FIXME affichage multiple pilote avec plusieurs photos. <br/>
+  {{#each piloteEcurie}}
+  <a class="tooltip" href="/pilote/{{this.pilnum}}">
+     {{this.pilnom}}||
+     <span>
+       <img src="/image/pilote/{{this.phoadresse}}">
+     </span>
+  </a>
+  {{/each}}
+  </p>
+
+  <p>Voiture : <br/>
+  {{#each voitureEcurie}}
+    <img src="/image/ecurie/voiture/{{this.voiadresseimage}}" alt="Image de la voiture" />
+    {{this.voinom}}
+    {{this.typelibelle}}
+  {{/each}}
+  </p>
+{{/if}}

@@ -1,0 +1,15 @@
+{{#if lettrePilote}}
+  <div>
+    <p>Cliquez sur une lettre</p>
+    <table class="text-center">
+      <tr>
+        {{#each lettrePilote}}
+          <td>
+            <a href="/repertoirePilote/{{this.firstLetter}}"> {{this.firstLetter}}</a>
+          </td>
+        {{/each}}
+      </tr>
+    </table>
+    <hr/>
+  </div>
+{{/if}}

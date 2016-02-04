@@ -1,0 +1,35 @@
+{{#if pilote}}
+  <div>
+    <div>
+      <img class="small left" src="/image/pilote/{{listePhotosPilote.0.phoadresse}}" alt="{{listePhotosPilote.0.phocommentaire}}" />
+      Nom : {{pilote.pilnom}} {{pilote.pilprenom}}
+    </div>
+
+    <div>
+      Date de naissance : {{formatDate pilote.pildatenais "DD/MM/YYYY"  }} <br/>
+      Nationalité : {{pilote.paynom}} <br/>
+      Ecurie :
+      {{#if ecuriePilote.ecunom}}
+          {{ecuriePilote.ecunom}}
+      {{else}}
+          Aucune écurie cette année
+      {{/if}}
+    </div>
+    <div>
+      Poids : {{pilote.pilpoids}}
+      <br/>
+      Taille : {{pilote.piltaille}}
+    </div>
+
+    {{> listeSponsors}}
+
+    <p>Qui suis-je ?</p>
+    <p>
+        {{pilote.piltexte}}
+    </p>
+
+    AVANT
+    {{> listePhotosPilote}}
+    APRES
+  </div>
+{{/if}}

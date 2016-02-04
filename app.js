@@ -3,6 +3,7 @@ var express         = require('express'),
     cookieParser    = require('cookie-parser'),
     bodyParser      = require('body-parser'), //pour récupérer les résultats des post
 	 handlebars  	  = require('express-handlebars'), hbs,
+   moment = require('moment'),
 	 http = require('http'),
 	 path = require('path');
 
@@ -38,8 +39,20 @@ app.use(function(request, response, next){
 hbs = handlebars.create({
    defaultLayout: 'main', // nom de la page par defaut ici main.handlebars (structure de base HTML)
 
-   partialsDir: ['views/partials/'] // le vues partielles (le code HTML qui se répète dans toutes les pages)
+   partialsDir: ['views/partials/'], // le vues partielles (le code HTML qui se répète dans toutes les pages)
    // les vues qui changent suivant le choix de l'utilisateur sont à la racine du répertoire : views
+
+
+   //Les helpers
+    helpers: {
+      formatDate: function (date, format) {
+          return moment(date).format(format);
+      },
+      inc: function(value, options) {
+        //console.log('reading it');
+        return parseInt(value) + 1;
+      }
+    }
 });
 
 app.engine('handlebars', hbs.engine);

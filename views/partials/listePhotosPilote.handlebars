@@ -1,0 +1,9 @@
+{{#if listePhotosPilote }}
+  <div>
+    {{#each listePhotosPilote }}
+        <a href="/image/pilote/{{this.phoadresse}}" class="lytebox" data-lyte-options="group:vacation" data-title="{{this.phocommentaire}}">
+         {{this.phocommentaire}}
+       </a>
+    {{/each}}
+  </div>
+{{/if}}

@@ -1,9 +1,13 @@
-var model = require('../models/pilote.js');
+var piloteModel = require('../models/pilote.js');
+var sponsorModel = require('../models/sponsor.js');
+var photoModel = require('../models/photo.js');
+var ecurieModel = require('../models/ecurie.js');
+var async = require('async');
 
 module.exports.Repertoire = function(request, response) {
    response.title = 'Répertoire des pilotes';
 
-   model.getListPilotes (function (err, result) {
+   piloteModel.getListPilotes (function (err, result) {
         if (err) {
             console.log(err);
             return;
@@ -21,45 +25,63 @@ module.exports.Repertoire = function(request, response) {
     var lettre = request.params.lettre;
     response.title = 'Liste des pilotes';
 
-    model.getPiloteByLetter (lettre, function ( err, result) {
-        if (err) {
-            console.log(err);
-            return;
-        }
-       response.listePilote = result;
-       model.getListPilotes (function (erreur, resultat) {
-         if (erreur) {
-           console.log(erreur);
-           return;
-         }
-         response.lettrePilote = resultat;
-         //console.log(response);
-         response.render('repertoirePilotes', response);
-       })
-
-        });
+//TODO Bug fix
+    async.parallel([
+      function(callback){
+          piloteModel.getPiloteByLetter(lettre, function(err, resultat) { callback(null, resultat)});
+      }, //Fin callback 0
+      function (callback) {
+        piloteModel.getListPilotes (function (erreur, resultat) { callback(null, resultat)});
+      } // fin callback 1
+    ],
+    function (err, result) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      response.listePilote = result[0]; //Résultat première fonction.
+      response.lettrePilote = result[1]; //Résultat deuxième fonction.
+      //console.log(response);
+      response.render('repertoirePilotes', response);
+    }); //Fin async
   } ;
 
   module.exports.GetPilote = function(request, response) {
     var pilote = request.params.pilote;
     response.title = "Détails d'un pilote";
 
-    model.getPilote(pilote, function(err, result) {
+    async.parallel([
+      function(callback){
+          piloteModel.getPilote(pilote, function(err, result) { callback(null, result) });
+      }, //Fin callback 0
+      function (callback) {
+        piloteModel.getListPilotes (function (erreur, resultat) { callback(erreur, resultat) });
+      }, // fin callback 1
+      function (callback) {
+        sponsorModel.getSponsorsByPilote (pilote, function (erreur, resultat) { callback(erreur, resultat) });
+      },
+      function(callback) {
+        photoModel.getPhotosByPilote( pilote, function(err, res) { callback( err, res)});
+      },
+      function(callback) {
+        ecurieModel.getEcurie(pilote, function(err,res) {callback(err, res)});
+      }
+    ],
+    function (err, result) {
       if (err) {
         console.log(err);
         return;
       }
+      //console.log(result);
+      response.pilote = result[0][0]; //Résultat première fonction.
+      response.lettrePilote = result[1]; //Résultat deuxième fonction.
+      response.sponsors = result[2];
+      response.listePhotosPilote = result[3];
+      response.ecuriePilote = result[4][0];
+      console.log(response);
+      response.render('repertoirePilotes', response);
+    }
 
-      response.pilote = result;
-      model.getListPilotes (function (erreur, resultat) {
-        if (erreur) {
-          console.log(erreur);
-          return;
-        }
-        response.lettrePilote = resultat;
-        console.log(response);
-        response.render('repertoirePilotes', response);
-      })
-    })
+    ); //Fin async
 
   };

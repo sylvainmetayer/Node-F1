@@ -17,9 +17,11 @@ module.exports = function(app){
 
  // circuits
    app.get('/circuits', CircuitController.ListerCircuit);
+   app.get('/circuits/:id', CircuitController.GetCircuit);
 
 // Ecuries
    app.get('/ecuries', EcurieController.ListerEcurie);
+   app.get('/ecuries/:id', EcurieController.GetEcurie);
 
  //Résultats
    app.get('/resultats', ResultatController.ListerResultat);

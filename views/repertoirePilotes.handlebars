@@ -1,61 +1,7 @@
-<h1> Mettre ici la première lettre du nom des pilotes </h1>
-
-<p>Cliquez sur une lettre</p>
+<h1> Répertoire des pilotes </h1>
 
 <center>
-{{#if lettrePilote}}
-  <table class="text-center">
-    <tr>
-      {{#each lettrePilote}}
-        <td>
-          <a href="/repertoirePilote/{{this.firstLetter}}"> {{this.firstLetter}}</a>
-        </td>
-      {{/each}}
-    </tr>
-  </table>
-{{/if}}
-
-{{#if listePilote}}
-  <table class="text-center">
-    <tr>
-      <th>Photo</th>
-      <th>Nom / Prenom</th>
-    </tr>
-      {{#each listePilote}}
-       <tr>
-         <td>
-           <a href="/pilote/{{this.pilnum}}">
-             <img with="90" height="90" src="/image/pilote/{{this.phoadresse}}" alt="{{this.phocommentaire}}"/>
-           </a>
-         </td>
-         <td>
-           <a href="/pilote/{{this.pilnum}}">
-             {{this.pilnom}} {{this.pilprenom}}
-           </a>
-         </td>
-       </tr>
-      {{/each}}
-
-  </table>
-{{/if}}
-
-{{#if pilote}}
-    <img src="/image/pilote/{{pilote.pĥoadresse}}" alt="{{pilote.phocommentaire}}" />
-    Nom : {{pilote.pilnom}} {{pilote.pilprenom}}
-    <br/>
-    Date de naissance : {{pilote.pildatenais}}
-    <br/>
-    Nationalité : {{pilote.paynom}}
-    <br/>
-    Poids : {{pilote.pilpoids}}
-    <br/>
-    Taille : {{pilote.piltaille}}
-    <br/>
-    Principaux Sponsors :
-    TODO
-
-    <br/>
-    Qui suis-je ?<br/>
-    {{pilote.piltexte}}
-{{/if}}
+{{> listeLettrePilote}}
+{{> listePilote}}
+{{> detailsPilote}}
 </center>
