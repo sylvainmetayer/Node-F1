@@ -1,11 +1,19 @@
 <h1>Authentification</h1>
 
-<form action="#" method="post">
-  <label for="login">Login</label>
-  <input type="text" id="login" name="login" required>
-  <br/>
-  <label for="pwd">Mot de passe</label>
-  <input type="password" id="pwd" name="pwd" required>
+{{#if fail}}
+TODO Réussir à afficher ce message.
+  {{this}}
+  <div class="error">Mot de passe ou nom d'utilisateur incorrect.</div>
+{{/if}}
 
-  <input type="submit" value="Se connecter">
-</form>
+<div>
+  <form action="#" method="post">
+    <label for="login">Login</label>
+    <input type="text" id="login" name="login" required>
+    <br/>
+    <label for="pwd">Mot de passe</label>
+    <input type="password" id="pwd" name="pwd" required>
+
+    <input type="submit" value="Se connecter">
+  </form>
+</div>

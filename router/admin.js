@@ -8,8 +8,28 @@ var CircuitController = require('../controllers/CircuitController');
 var express = require('express');
 var router = express.Router();
 
-router.route('/login')
-  .get(AdminController.Login)
-  .post(AdminController.CheckLogin);
-  
+router.get('/', requireAdmin, HomeController.Index);
+
+router.route('/repertoirePilote')
+.get(requireAdmin, PiloteController.ListerPiloteAdmin);
+
+router.get('/repertoirePilote/:id', requireAdmin, PiloteController.delete);
+
+router.route('/pilote/add')
+  .get(requireAdmin, PiloteController.add)
+  .post(requireAdmin, PiloteController.addData);
+
+function requireAdmin(req, res, next) {
+  if (req.session.isConnected == "" || req.session.isConnected == undefined) {
+    message = "{'fail':'Merci de vous authentifier'}";
+
+    //TODO modifier afin de gérer l'envoi d'un message personnalisé.
+    res.fail = JSON.stringify({ fail: "Merci de vous authentifier" });
+    res.redirect('/login');
+    console.log(res);
+    return;
+  }
+  next();
+}
+
 module.exports = router;

@@ -84,3 +84,35 @@ module.exports.Repertoire = function(request, response) {
     ); //Fin async
 
   };
+
+
+module.exports.ListerPiloteAdmin = function(err, res) {
+  res.title = 'Admin - Répertoire des pilotes';
+
+  piloteModel.getAllPilotes (function (err, result) {
+       if (err) {
+           console.log(err);
+           return;
+       }
+      res.pilotes = result;
+      //console.log("RESULTAT : " +result);
+      res.render('adminListerPilote', res);
+      });
+};
+
+module.exports.delete = function(err, res) {
+  res.title = 'Admin - Répertoire des pilotes';
+  res.render('adminListerPilote', res);
+  //TODO
+};
+
+
+module.exports.add = function(request, response) {
+   response.title = 'Ajout d\'un pilote';
+   response.render('addPilote', response);
+};
+
+module.exports.addData = function(request, response) {
+   response.title = 'Ajout d\'un pilote';
+   response.render('addPilote', response);
+};

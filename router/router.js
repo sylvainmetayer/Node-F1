@@ -3,6 +3,7 @@ var ResultatController = require('./../controllers/ResultatController');
 var EcurieController = require('./../controllers/EcurieController');
 var PiloteController = require('./../controllers/PiloteController');
 var CircuitController = require('./../controllers/CircuitController');
+var AdminController = require('../controllers/AdminController');
 
 // Routes
 module.exports = function(app){
@@ -30,6 +31,10 @@ module.exports = function(app){
   //Toutes les routes concernant l'admin.
   var admin = require('./admin');
   app.use('/admin', admin);
+
+  // Authentification
+  app.get('/login',AdminController.Login);
+  app.post('/login', AdminController.CheckLogin);
 
   // tout le reste
   app.get('*', HomeController.Index);

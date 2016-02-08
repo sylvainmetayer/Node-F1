@@ -14,6 +14,7 @@
         "string": ">3.0",
         "unidecode": "*",
         "async": ">0.9",
-        "moment":">=2.11"
+        "moment":">=2.11",
+        "sha1":"*"
     }
 }

@@ -73,6 +73,12 @@ hbs = handlebars.create({
              default:
                  return options.inverse(this);
          }
+     },
+     isConnected: function(isConnected) {
+       if (isConnected) {
+         return true;
+       }
+       app.redirect('/')
      }
     }
 });

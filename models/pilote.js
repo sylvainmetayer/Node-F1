@@ -39,3 +39,15 @@ module.exports.getPilote = function(pilote, callback) {
 		}
 	})
 }
+
+module.exports.getAllPilotes = function(callback) {
+	db.getConnection(function(err, connexion) {
+		if (!err) {
+			var sql = "SELECT p.pilnum, p.pilnom, p.pilprenom, p.pildatenais";
+			sql += " FROM pilote p";
+
+			connexion.query(sql, callback);
+			connexion.release();
+		}
+	})
+}
