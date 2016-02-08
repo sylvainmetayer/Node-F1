@@ -42,7 +42,6 @@ hbs = handlebars.create({
    partialsDir: ['views/partials/'], // le vues partielles (le code HTML qui se répète dans toutes les pages)
    // les vues qui changent suivant le choix de l'utilisateur sont à la racine du répertoire : views
 
-
    //Les helpers
     helpers: {
       formatDate: function (date, format) {
@@ -83,7 +82,6 @@ app.set('view engine', 'handlebars');
 
 // chargement du routeur
 require('./router/router')(app);
-
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Serveur Node.js en attente sur le port ' + app.get('port'));

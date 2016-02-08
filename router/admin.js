@@ -8,21 +8,8 @@ var CircuitController = require('../controllers/CircuitController');
 var express = require('express');
 var router = express.Router();
 
-
-
-//On exporte les routes.
-module.exports = router;
-
-
-
-var express = require('express');
-var router = express.Router();
-
-// middleware that is specific to this router
-router.get('/login', AdminController.Login);
-// define the about route
-router.get('/about', function(req, res) {
-  res.send('About birds');
-});
-
+router.route('/login')
+  .get(AdminController.Login)
+  .post(AdminController.CheckLogin);
+  
 module.exports = router;
