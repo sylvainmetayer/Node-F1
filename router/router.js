@@ -25,10 +25,13 @@ module.exports = function(app){
 
  //Résultats
    app.get('/resultats', ResultatController.ListerResultat);
+   app.get('/resultats/:id', ResultatController.GetResultat);
 
+  //Toutes les routes concernant l'admin.
+  var admin = require('./admin');
+  app.use('/admin', admin);
 
-
-// tout le reste
+  // tout le reste
   app.get('*', HomeController.Index);
   app.post('*', HomeController.Index);
 

@@ -25,7 +25,7 @@ module.exports.getListeEcurie = function (callback) {
 module.exports.getPilote = function(idEcurie, callback) {
 	db.getConnection(function(err, connexion){
  			 if(!err){
- 					 var sql ="SELECT distinct p.pilnum, p.pilnom, ph.phoadresse FROM ecurie e JOIN pilote p on p.ecunum=e.ecunum JOIN photo ph ON ph.pilnum=p.pilnum WHERE e.ecunum =" + idEcurie;
+ 					 var sql ="SELECT distinct p.pilnum, p.pilnom, ph.phoadresse FROM ecurie e JOIN pilote p on p.ecunum=e.ecunum JOIN photo ph ON ph.pilnum=p.pilnum WHERE phonum=1 AND e.ecunum =" + idEcurie;
  					 //console.log (sql);
  					 connexion.query(sql, callback);
  					 connexion.release();
