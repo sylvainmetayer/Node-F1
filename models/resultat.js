@@ -15,7 +15,6 @@ module.exports.getListResultat = function (callback) {
 module.exports.get = function (idGP, callback) {
  db.getConnection(function(err, connexion){
 			 if(!err){
-         //TODO change SQL request
 					 var sql ="SELECT gpnom, gpdate, gpcommentaire FROM grandprix gp WHERE gp.gpnum =" + idGP;
 					 //console.log (sql);
 					 connexion.query(sql, callback);

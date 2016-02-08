@@ -25,7 +25,6 @@ module.exports.Repertoire = function(request, response) {
     var lettre = request.params.lettre;
     response.title = 'Liste des pilotes';
 
-//TODO Bug fix
     async.parallel([
       function(callback){
           piloteModel.getPiloteByLetter(lettre, function(err, resultat) { callback(null, resultat)});

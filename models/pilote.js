@@ -16,7 +16,6 @@ module.exports.getPiloteByLetter = function(lettre, callback) {
   //console.log("SQL LETTRE : " + lettre);
     db.getConnection(function(err, connexion) {
       if (!err) {
-				//TODO bug fix : Kimi R (affichage multiple)
         var sql = "SELECT distinct pilnom, pilprenom, p.pilnum, phoadresse, phocommentaire FROM pilote p ";
         sql += " INNER JOIN photo ph on ph.pilnum=p.pilnum ";
         sql += " WHERE SUBSTR(pilnom, 1, 1) = '" + lettre + "' and phonum=1";
