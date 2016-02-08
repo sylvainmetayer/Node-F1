@@ -1,16 +1,54 @@
+var model = require('./../models/resultat.js');
+var async = require('async');
 
 
   // //////////////////////////L I S T E R    R E S U L T A T S
 module.exports.GetResultat = function(request, response){
+	var idGP = request.params.id;
+	response.title = "Détails d'un resultat";
 
-	response.title = 'RE TODO :(';
+	async.parallel([
+		function(callback){
+				model.get(idGP, function(err, result) { callback(null, result) });
+		}, //Fin callback 0
+		function (callback) {
+			model.getListResultat (function (erreur, resultat) { callback(erreur, resultat) });
+		}, // fin callback 1
+		function (callback) {
+			model.getPiloteInGP (idGP, function (erreur, resultat) { callback(erreur, resultat) });
+		}
+	],
+	function (err, result) {
+		if (err) {
+			console.log(err);
+			return;
+		}
+		//console.log(result);
+		response.detailGP = result[0][0]; //Résultat première fonction.
+		response.listeResultat = result[1]; //Résultat deuxième fonction.
+		response.piloteByGP = result[2];
+		console.log(response);
+		response.render('listerResultat', response);
+	}
 
-	response.render('listerResultat', response);
+	); //Fin async
 };
 
 module.exports.ListerResultat = function(request, response){
+	response.title = 'Liste des resultats.';
 
-	response.title = 'RE TODO :(';
+	model.getListResultat (function (erreur, resultat) {
+		if (erreur) {
+			console.log(err);
+			return;
+		}
+		response.listeResultat = resultat;
+		console.log(response);
 
-	response.render('listerResultat', response);
+		response.render('listerResultat', response);
+	});
+
+
+
+
 };
