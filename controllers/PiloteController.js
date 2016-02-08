@@ -2,6 +2,7 @@ var piloteModel = require('../models/pilote.js');
 var sponsorModel = require('../models/sponsor.js');
 var photoModel = require('../models/photo.js');
 var ecurieModel = require('../models/ecurie.js');
+var natioModel = require('../models/nationalite.js');
 var async = require('async');
 
 module.exports.Repertoire = function(request, response) {
@@ -95,7 +96,7 @@ module.exports.ListerPiloteAdmin = function(err, res) {
            return;
        }
       res.pilotes = result;
-      //console.log("RESULTAT : " +result);
+      console.log("RESULTAT : " +result);
       res.render('adminListerPilote', res);
       });
 };
@@ -109,10 +110,49 @@ module.exports.delete = function(err, res) {
 
 module.exports.add = function(request, response) {
    response.title = 'Ajout d\'un pilote';
-   response.render('addPilote', response);
+
+   async.parallel([
+     function(callback){
+       ecurieModel.getListeEcurie(function(err, result) { callback(null, result) });
+     },
+     function (callback) {
+       natioModel.getAllNationnalites (function (erreur, resultat) { callback(erreur, resultat) });
+     }
+   ],
+   function (err, result) {
+     if (err) {
+       console.log(err);
+       return;
+     }
+     response.ecuries = result[0];
+     response.nationalites = result[1];
+     console.log(response);
+     response.render('addPilote', response);
+   }
+   );
 };
 
 module.exports.addData = function(request, response) {
    response.title = 'Ajout d\'un pilote';
-   response.render('addPilote', response);
+   data = request.body;
+
+   async.parallel([
+     function(callback){
+         piloteModel.getAllPilotes(function(err, result) { callback(null, result) });
+     }, //Fin callback 0
+     function (callback) {
+       piloteModel.add (data, function (erreur, resultat) { callback(erreur, resultat) });
+     }
+   ],
+   function (err, result) {
+     if (err) {
+       console.log(err);
+       return;
+     }
+     //console.log(result);
+     response.pilotes = result[0]; //Résultat première fonction.
+     console.log(response);
+     response.render('adminListerPilote', response);
+   }
+   );
 };

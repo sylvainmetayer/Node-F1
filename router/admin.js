@@ -15,7 +15,7 @@ router.route('/repertoirePilote')
 
 router.get('/repertoirePilote/:id', requireAdmin, PiloteController.delete);
 
-router.route('/pilote/add')
+router.route('/add/pilote')
   .get(requireAdmin, PiloteController.add)
   .post(requireAdmin, PiloteController.addData);
 
