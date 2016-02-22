@@ -10,6 +10,14 @@ var router = express.Router();
 
 router.get('/', requireAdmin, HomeController.Index);
 
+// Test upload image
+
+router.route('/upload')
+  .get(CircuitController.uploadGet)
+  //.post(CircuitController.uploadFile);
+
+
+// Pilote
 router.route('/repertoirePilote')
 .get(requireAdmin, PiloteController.ListerPiloteAdmin);
 
@@ -18,6 +26,16 @@ router.get('/repertoirePilote/:id', requireAdmin, PiloteController.delete);
 router.route('/add/pilote')
   .get(requireAdmin, PiloteController.add)
   .post(requireAdmin, PiloteController.addData);
+
+// Circuits
+router.get('/circuits', requireAdmin, CircuitController.ListerCircuitAdmin);
+
+router.route('/add/circuit') // TODO remettre les requireAdmin
+  .get(CircuitController.add)
+  .post(CircuitController.addData);
+
+// TODO router.get('/circuits/:id', requireAdmin, CircuitController.delete);
+
 
 function requireAdmin(req, res, next) {
   if (req.session.isConnected == "" || req.session.isConnected == undefined) {

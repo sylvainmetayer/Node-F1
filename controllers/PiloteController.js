@@ -78,7 +78,6 @@ module.exports.Repertoire = function(request, response) {
       response.sponsors = result[2];
       response.listePhotosPilote = result[3];
       response.ecuriePilote = result[4][0];
-      console.log(response);
       response.render('repertoirePilotes', response);
     }
 
@@ -151,7 +150,6 @@ module.exports.addData = function(request, response) {
      }
      //console.log(result);
      response.pilotes = result[0]; //Résultat première fonction.
-     console.log(response);
      response.render('adminListerPilote', response);
    }
    );

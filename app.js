@@ -8,8 +8,8 @@ var express         = require('express'),
 	 path = require('path');
 
 var app = express();
-var $ = require('jquery');
-require('jquery-ui');
+//var $ = require('jquery');
+//require('jquery-ui');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('port', 6800);

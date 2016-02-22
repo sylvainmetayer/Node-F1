@@ -1,0 +1,35 @@
+<img src="/image/cat_circuit.png" alt="Drapeau Circuits" />
+<h1>Gestion des circuits</h1>
+
+<a href="/admin/add/circuit"> <img src="/image/act_add.png" alt="Ajout_image" />Ajouter un circuit</a>
+
+{{#if circuits}}
+  <table>
+    <tr>
+      <th> Nom </th>
+      <th> Longueur </th>
+      <th> Nombre de spectateur </th>
+      <th> Action</th>
+    </tr>
+    {{#each circuits}}
+    <tr>
+      <td>
+        {{ this.cirnom }}
+      </td>
+      <td>
+         {{ this.cirlongueur}} m
+      </td>
+      <td>
+        {{ this.cirnbspectateurs}}
+      </td>
+      <td>
+        <a href="/admin/update/circuit/{{this.cirnum}}">Modifier</a> |
+        <a href="/admin/circuits/{{this.cirnum}}">Supprimer</a>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+
+{{else}}
+  <p>Aucun circuit enregistré</p>
+{{/if}}

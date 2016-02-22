@@ -19,7 +19,6 @@ module.exports.getPiloteByLetter = function(lettre, callback) {
         var sql = "SELECT distinct pilnom, pilprenom, p.pilnum, phoadresse, phocommentaire FROM pilote p ";
         sql += " INNER JOIN photo ph on ph.pilnum=p.pilnum ";
         sql += " WHERE SUBSTR(pilnom, 1, 1) = '" + lettre + "' and phonum=1";
-        //console.log(sql);
 
         connexion.query(sql, callback);
         connexion.release();

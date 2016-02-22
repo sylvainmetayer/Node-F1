@@ -16,7 +16,8 @@
         "async": ">0.9",
         "moment":">=2.11",
         "sha1":"*",
-        "jquery":"*",
-        "jquery-ui":"*"
+        "fs-extra":"*",
+        "formidable":"*",
+        "path":"*"
     }
 }
