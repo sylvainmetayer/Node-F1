@@ -1,0 +1,36 @@
+<img src="/image/cat_pilote.png" alt="Casque de pilote" />
+<h1>Gestion des pilotes</h1>
+
+<a href="/admin/add/pilote"> <img src="/image/act_add.png" alt="Ajout_image" />Ajouter un pilote</a>
+
+
+{{#if pilotes}}
+  <table>
+    <tr>
+      <th> Nom </th>
+      <th> Prénom </th>
+      <th> Date de naissance </th>
+      <th> Actions</th>
+    </tr>
+    {{#each pilotes}}
+    <tr>
+      <td>
+        {{ this.pilnom }}
+      </td>
+      <td>
+         {{ this.pilprenom}}
+      </td>
+      <td>
+        {{formatDate this.pildatenais "DD/MM/YYYY"}}
+      </td>
+      <td>
+        <a href="/admin/update/pilote/{{this.pilnum}}">Modifier</a> |
+        <a href="/admin/repertoirePilote/{{this.pilnum}}">Supprimer</a>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+
+{{else}}
+  <p>Aucun pilote enregistré</p>
+{{/if}}

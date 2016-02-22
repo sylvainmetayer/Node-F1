@@ -1,0 +1,46 @@
+<h1>Ajouter un pilote</h1>
+
+<form action="#" method="post">
+  <label for="pilprenom">Prenom</label>
+  <input type="text" name="pilprenom" id="pilprenom" required>
+
+  <label for="pilnom">Nom</label>
+  <input type="text" name="pilnom" id="pilnom" required>
+
+  <label for="pildatenais">Date de naissance</label>
+  <input type="text" class="datepicker" name="pildatenais" id="pildatenais" required>
+
+  <label for="paynum">Nationalité</label>
+  <select id="paynum" name="paynum">
+    {{#each nationalites}}
+      <option value="{{this.paynum}}">{{this.paynat}}</option>
+    {{/each}}
+  </select>
+
+  <label for="ecunum">Ecurie</label>
+  <select id="ecunum" name="ecunum">
+    {{#each ecuries}}
+      <option value="{{this.ecunum}}">{{this.ecunom}}</option>
+    {{/each}}
+  </select>
+
+  <label for="pilpoints">Points</label>
+  <input type="text" name="pilpoints" id="pilpoints" required>
+
+  <label for="pilpoids">Poids</label>
+  <input type="text" name="pilpoids" id="pilpoids" required>
+
+  <label for="piltaille">Taille</label>
+  <input type="text" name="piltaille" id="piltaille" required>
+
+  <label for="piltexte">Description</label>
+  <textarea name="piltexte" id="piltexte" rows="8" cols="40"  required></textarea>
+
+  <input type="submit" value="Ajouter">
+
+  <script>
+  $(function() {
+    $( ".datepicker" ).datepicker();
+  });
+  </script>
+</form>
