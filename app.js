@@ -12,7 +12,10 @@ var app = express();
 //require('jquery-ui');
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.set('port', 6800);
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 6800
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+
+app.set('port', server_port);
 app.set('views', path.join(__dirname, 'views'));
 
 // routes static, le routeur n'y aura pas accès
@@ -91,6 +94,6 @@ app.set('view engine', 'handlebars');
 // chargement du routeur
 require('./router/router')(app);
 
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), server_ip_address, function(){
   console.log('Serveur Node.js en attente sur le port ' + app.get('port'));
 });

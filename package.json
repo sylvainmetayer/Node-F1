@@ -19,5 +19,9 @@
         "fs-extra":"*",
         "formidable":"*",
         "path":"*"
-    }
+    },
+    "scripts": {
+        "start": "node app.js"
+    },
+    "main": "app.js"
 }
