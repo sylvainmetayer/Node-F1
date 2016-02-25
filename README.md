@@ -28,3 +28,4 @@ pour demarrer l'application
 npm start
 
 Penser à regarder que le configDb.js est correct avant de démarrer l'application
+TODO avant le rendu, passer en devDependencies le node-monkey

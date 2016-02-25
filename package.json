@@ -25,9 +25,7 @@
         "sha1":"*",
         "fs-extra":"*",
         "formidable":"*",
-        "path":"*"
-    },
-    "devDependencies": {
+        "path":"*",
         "node-monkey":"*"
     },
     "scripts": {
