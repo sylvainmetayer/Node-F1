@@ -1,24 +1,34 @@
 {
-    "name": "GrandPrixNodeJS",
+    "name": "GrandPrix_Sylvain_Metayer",
     "description": "Un exemple Express.js application utilisant MVC Template",
     "private": true,
-    "version": "0.1.4",
+    "version": "0.2.4",
+    "contributors": [{
+      "name": "Sylvain Metayer",
+      "email": "sylvain_metayer@outlook.fr"
+     }],
+     "scripts": {
+       "start": "node app.js"
+     },
     "dependencies": {
         "express": "~4",
         "express-handlebars": "*",
         "express-session": "~1.12",
         "cookie-parser": "~1.4",
         "body-parser": ">1.10",
-        "mysql": "*",
         "crypto": "~0.0",
         "string": ">3.0",
-        "unidecode": "*",
         "async": ">0.9",
         "moment":">=2.11",
+        "mysql": "*",
+        "unidecode": "*",
         "sha1":"*",
         "fs-extra":"*",
         "formidable":"*",
         "path":"*"
+    },
+    "devDependencies": {
+        "node-monkey":"*"
     },
     "scripts": {
         "start": "node app.js"

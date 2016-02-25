@@ -44,7 +44,6 @@ function requireAdmin(req, res, next) {
     //TODO modifier afin de gérer l'envoi d'un message personnalisé.
     res.fail = JSON.stringify({ fail: "Merci de vous authentifier" });
     res.redirect('/login');
-    console.log(res);
     return;
   }
   next();

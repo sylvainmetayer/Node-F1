@@ -8,8 +8,12 @@ var express         = require('express'),
 	 path = require('path');
 
 var app = express();
+// TODO fix jsquery problem
 //var $ = require('jquery');
 //require('jquery-ui');
+
+//Debug - 127.0.0.1:50500
+var nomo = require('node-monkey').start();
 
 app.use(bodyParser.urlencoded({extended: true}));
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 6800

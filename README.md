@@ -21,3 +21,10 @@ Vous devez compléter ce travail pour obtenir les écrans demandés.<br />
 Je souhaite un code bien documenté et clair qui fonctionne sans intervention de ma part.<br />
 Merci de respecter la date limte de remise du travail !!!!<br />
 <b> ⊂(◉‿◉)つ <b>
+
+Pour installer :
+npm install -production
+pour demarrer l'application
+npm start
+
+Penser à regarder que le configDb.js est correct avant de démarrer l'application
