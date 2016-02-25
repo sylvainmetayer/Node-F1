@@ -10,7 +10,14 @@
      "scripts": {
        "start": "node app.js"
      },
-    "dependencies": {
+     "repository": {
+      "type": "git",
+      "url": "https://github.com/sylvainmetayer/Node-F1.git"
+      },
+      "bugs": {
+        "url": "https://github.com/sylvainmetayer/Node-F1/issues"
+      },
+      "dependencies": {
         "express": "~4",
         "express-handlebars": "*",
         "express-session": "~1.12",
@@ -27,9 +34,10 @@
         "formidable":"*",
         "path":"*",
         "node-monkey":"*"
-    },
-    "scripts": {
+      },
+      "scripts": {
         "start": "node app.js"
-    },
-    "main": "app.js"
+      },
+      "main": "app.js",
+      "license": "MIT"
 }
