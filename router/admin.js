@@ -11,45 +11,42 @@ var router = express.Router();
 
 router.get('/', requireAdmin, HomeController.Index);
 
-// TODO en phase de dev, on s'en fiche des requireAdmin. A remettre une fois que la fonctionnalité est testée et fonctionnelle.
-
 // Test upload image
 router.route('/upload')
   .get(CircuitController.uploadGet)
   //.post(CircuitController.uploadFile);
 
-// Pilote
-router.route('/repertoirePilote')
-  .get(requireAdmin, PiloteController.ListerPiloteAdmin);
+/* GESTION DES PILOTES */
 
-router.get('/repertoirePilote/:id', requireAdmin, PiloteController.delete);
+router.get('/pilotes', requireAdmin, PiloteController.ListerPiloteAdmin);
+router.get("/pilotes/add", requireAdmin, PiloteController.addForm);
+router.post("/pilotes/add", requireAdmin, PiloteController.addData);
+router.get('/pilotes/delete/:id', requireAdmin, PiloteController.delete);
 
-router.route('/add/pilote')
-  .get(requireAdmin, PiloteController.add)
-  .post(requireAdmin, PiloteController.addData);
-
-// Circuits
+/* GESTION DES CIRCUITS */
 router.get('/circuits', requireAdmin, CircuitController.ListerCircuitAdmin);
 
-router.route('/add/circuit')
-  .get(CircuitController.add)
-  .post(CircuitController.addData);
+router.route('/circuits/add')
+  .get(requireAdmin, CircuitController.add)
+  .post(requireAdmin, CircuitController.addData);
 
 // TODO router.get('/circuits/:id', requireAdmin, CircuitController.delete);
 
-// Résultats
-router.route('/resultats')
-  .get(ResultatController.GetAllGPAdmin)
-  .post(ResultatController.SaisieResultatsAdmin);
+/* GESTION DES RESULTATS */
+router.route('/resultats/')
+  .get(requireAdmin, ResultatController.GetAllGPAdmin)
+  .post(requireAdmin, ResultatController.SaisieResultatsAdmin);
 
-// Sponsors
+/* GESTION DES SPONSORS */
 router.route('/sponsors')
-  .get(SponsorController.getAllSponsors);
+  .get(requireAdmin, SponsorController.getAllSponsors);
 
-router.route('/sponsor/add')
-  .get(SponsorController.addForm)
-  .post(SponsorController.addData);
+router.route('/sponsors/add')
+  .get(requireAdmin, SponsorController.addForm)
+  .post(requireAdmin, SponsorController.addData);
 
+
+/* FONCTION CONTROLE CONNEXION */
 function requireAdmin(req, res, next) {
   if (req.session.isConnected == "" || req.session.isConnected == undefined) {
     //console.log(res);
@@ -61,4 +58,5 @@ function requireAdmin(req, res, next) {
   next();
 }
 
+//Export du router, pour pouvoir l'importer dans router.js
 module.exports = router;

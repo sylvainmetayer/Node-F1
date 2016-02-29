@@ -3,6 +3,7 @@ var modelEcurie = require('./../models/ecurie.js');
 var modelFinance = require('./../models/finance.js');
 var async = require('async');
 
+/* PARTIE CLIENT */
 module.exports.getAllSponsors = function(request, response) {
   response.title = 'Liste des sponsors';
 
@@ -12,11 +13,11 @@ module.exports.getAllSponsors = function(request, response) {
       return;
     }
     response.sponsors = resultat;
-    console.log(response.sponsors);
-
     response.render('adminListerSponsors', response);
   });
 };
+
+/* PARTIE ADMIN */
 
 module.exports.addForm = function(request, response) {
   response.title = 'Ajouter un sponsor';
@@ -34,11 +35,11 @@ module.exports.addForm = function(request, response) {
 module.exports.addData = function(request, response) {
   response.title = 'Ajouter un sponsor';
 
-  var sponum = request.body.sponum;
+  var sponom = request.body.sponom;
   var sposectactivite = request.body.sposectactivite;
 
   var dataSponsor = {
-    sponum,
+    sponom,
     sposectactivite
   };
 
@@ -53,18 +54,24 @@ module.exports.addData = function(request, response) {
   async.series([
       //on effectue d'abord l'ajout du sponsor, puis on ajoute son ecurie
       function(callback) {
-        model.addSponsor(function(err, resultat) {
+        model.addSponsor(dataSponsor, function(err, resultat) {
           sponumInserted = resultat.insertId;
-          console.log(sponumInserted);
 
           callback(err, resultat);
         });
       },
 
       function(callback) {
-        modelFinance.addFinance(dataEcurie, function(err, res) {
-          callback(err, res);
-        });
+        dataEcurie.sponum = sponumInserted;
+        if (dataEcurie.ecunum != undefined && dataEcurie.ecunum != 'aucune') {
+          //Si on a un id sur ecunum, on ajoute
+          modelFinance.addFinance(dataEcurie, function(err, res) {
+            callback(err, res);
+            return;
+          });
+        } else {
+          callback();
+        }
       }
     ],
     function(err, result) {

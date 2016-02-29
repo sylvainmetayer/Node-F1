@@ -9,6 +9,7 @@
 var user = "bd";
 var host = "localhost";
 var password = "bede";
+var multipleStatements = true;
 
 // Si on est sur le serveur, on récupère les parametres.
 if (process.env.OPENSHIFT_MYSQL_DB_URL) {
@@ -19,13 +20,16 @@ if (process.env.OPENSHIFT_MYSQL_DB_URL) {
   port = tab[3].split("/")[0];
   password = tab[2].split("@")[0];
 }
+
+
 var mysql = require('mysql'); // voir https://github.com/felixge/node-mysql/
 
 var pool = mysql.createPool({
   host: host,
   user: user,
   password: password,
-  database: 'grandprix'
+  database: 'grandprix',
+  multipleStatements: multipleStatements
 });
 
 module.exports.getConnection = function(callback) {

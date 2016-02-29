@@ -5,6 +5,8 @@ var ecurieModel = require('../models/ecurie.js');
 var natioModel = require('../models/nationalite.js');
 var async = require('async');
 
+/* PARTIE CLIENT */
+
 module.exports.Repertoire = function(request, response) {
   response.title = 'Répertoire des pilotes';
 
@@ -86,7 +88,6 @@ module.exports.GetPilote = function(request, response) {
         console.log(err);
         return;
       }
-      //console.log(result);
       response.pilote = result[0][0]; //Résultat première fonction.
       response.lettrePilote = result[1]; //Résultat deuxième fonction.
       response.sponsors = result[2];
@@ -99,9 +100,10 @@ module.exports.GetPilote = function(request, response) {
 
 };
 
+/* PARTIE ADMIN */
 
 module.exports.ListerPiloteAdmin = function(err, res) {
-  res.title = 'Admin - Répertoire des pilotes';
+  res.title = 'Test - Répertoire des pilotes';
 
   piloteModel.getAllPilotes(function(err, result) {
     if (err) {
@@ -109,7 +111,6 @@ module.exports.ListerPiloteAdmin = function(err, res) {
       return;
     }
     res.pilotes = result;
-    console.log("RESULTAT : " + result);
     res.render('adminListerPilote', res);
   });
 };
@@ -117,17 +118,16 @@ module.exports.ListerPiloteAdmin = function(err, res) {
 module.exports.delete = function(err, res) {
   res.title = 'Admin - Répertoire des pilotes';
   res.render('adminListerPilote', res);
-  //TODO
+  //TODO supprimer un pilote
 };
 
-
-module.exports.add = function(request, response) {
+module.exports.addForm = function(request, response) {
   response.title = 'Ajout d\'un pilote';
 
   async.parallel([
       function(callback) {
         ecurieModel.getListeEcurie(function(err, result) {
-          callback(null, result)
+          callback(err, result)
         });
       },
       function(callback) {
@@ -143,36 +143,51 @@ module.exports.add = function(request, response) {
       }
       response.ecuries = result[0];
       response.nationalites = result[1];
-      console.log(response);
-      response.render('addPilote', response);
+      response.render('adminAddPilote', response);
     }
   );
 };
 
 module.exports.addData = function(request, response) {
   response.title = 'Ajout d\'un pilote';
-  data = request.body;
 
-  async.parallel([
-      function(callback) {
-        piloteModel.getAllPilotes(function(err, result) {
-          callback(null, result)
-        });
-      }, //Fin callback 0
-      function(callback) {
-        piloteModel.add(data, function(erreur, resultat) {
-          callback(erreur, resultat)
-        });
-      }
-    ],
-    function(err, result) {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      //console.log(result);
-      response.pilotes = result[0]; //Résultat première fonction.
-      response.render('adminListerPilote', response);
+  var pilprenom = request.body.pilprenom,
+    pilnom = request.body.pilnom,
+    paynum = request.body.paynum,
+    ecunum = request.body.ecunum,
+    pilpoints = request.body.pilpoints,
+    pilpoids = request.body.pilpoids,
+    piltaille = request.body.pitaille,
+    piltexte = request.body.piltexte;
+
+  var pildatenaisForm = request.body.pildatenais;
+  tab = pildatenaisForm.split("/");
+  console.log(tab);
+  //var moment = require(moment);
+  var pildatenais = new Date(tab[2], tab[1]-1, tab[0]);
+
+  var dataPilote = {
+    pilnom,
+    pilprenom,
+    paynum,
+    ecunum,
+    pilpoints,
+    pildatenais,
+    pilpoids,
+    piltaille,
+    piltexte
+  }
+
+  piloteModel.add(dataPilote, function(erreur, resultat) {
+    if (erreur) {
+      console.log(erreur);
+      return;
     }
-  );
+    response.result = {
+      ajout: "Ajout OK"
+    };
+    response.redirect("/admin/pilotes");
+    return;
+  });
+
 };

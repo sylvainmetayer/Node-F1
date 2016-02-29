@@ -1,6 +1,8 @@
 var model = require('./../models/resultat.js');
 var async = require('async');
 
+/* PARTIE CLIENT */
+
 module.exports.GetResultat = function(request, response) {
   var idGP = request.params.id;
   response.title = "Détails d'un resultat";
@@ -52,6 +54,8 @@ module.exports.ListerResultat = function(request, response) {
     response.render('listerResultat', response);
   });
 };
+
+/* PARTIE ADMIN */
 
 module.exports.GetAllGPAdmin = function(request, response) {
   response.title = 'Liste des resultats.';

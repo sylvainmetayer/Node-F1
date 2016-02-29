@@ -1,8 +1,15 @@
 <img src="/image/cat_pilote.png" alt="Casque de pilote" />
 <h1>Gestion des pilotes</h1>
 
-<a href="/admin/add/pilote"> <img src="/image/act_add.png" alt="Ajout_image" />Ajouter un pilote</a>
+<a href="/admin/pilotes/add"> <img src="/image/act_add.png" alt="Ajout_image" />Ajouter un pilote</a>
 
+{{#if ajout}}
+  <div>
+    <strong>
+      {{this}}
+    </strong>
+  </div>
+{{/if}}
 
 {{#if pilotes}}
   <table>
