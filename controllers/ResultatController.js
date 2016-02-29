@@ -1,8 +1,6 @@
 var model = require('./../models/resultat.js');
 var async = require('async');
 
-
-  // //////////////////////////L I S T E R    R E S U L T A T S
 module.exports.GetResultat = function(request, response){
 	var idGP = request.params.id;
 	response.title = "Détails d'un resultat";
@@ -47,8 +45,32 @@ module.exports.ListerResultat = function(request, response){
 
 		response.render('listerResultat', response);
 	});
+};
 
+module.exports.GetAllGPAdmin = function(request, response){
+	response.title = 'Liste des resultats.';
 
+	model.getListResultat (function (erreur, resultat) {
+		if (erreur) {
+			console.log(err);
+			return;
+		}
+		response.listeResultat = resultat;
 
+		response.render('adminListerGP', response);
+	});
+};
 
+module.exports.SaisieResultatsAdmin = function(request, response){
+	response.title = 'Liste des resultats.';
+
+	model.getListResultat (function (erreur, resultat) {
+		if (erreur) {
+			console.log(err);
+			return;
+		}
+		response.listeResultat = resultat;
+
+		response.render('adminListerGP', response);
+	});
 };

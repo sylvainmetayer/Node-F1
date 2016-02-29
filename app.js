@@ -8,9 +8,7 @@ var express         = require('express'),
 	 path = require('path');
 
 var app = express();
-// TODO fix jsquery problem
-//var $ = require('jquery');
-//require('jquery-ui');
+var $ = require('jquery');
 
 //Debug - 127.0.0.1:50500
 var nomo = require('node-monkey').start();

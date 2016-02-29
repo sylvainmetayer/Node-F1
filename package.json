@@ -33,6 +33,7 @@
         "fs-extra":"*",
         "formidable":"*",
         "path":"*",
+        "jquery":"*",
         "node-monkey":"*"
       },
       "scripts": {

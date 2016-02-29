@@ -1,0 +1,13 @@
+<h1>Liste des résulats</h1>
+
+<div>
+	<form action="#" method="post">
+		<label for="gpnum">Selectionner un grand prix :</label>
+		<select id="gpnum" name="gpnum">
+			{{#each listeResultat}}
+			<option value="{{this.gpnum}}">{{this.gpnom}}</option>
+			{{/each}}
+		</select>
+		<input type="submit" value="Valider">
+	</form>
+</div>

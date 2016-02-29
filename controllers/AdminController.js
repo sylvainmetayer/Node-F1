@@ -7,6 +7,12 @@ module.exports.Login = function(request, response){
 	response.render('login', response);
 };
 
+module.exports.Deconnexion = function(request, response){
+	var session = request.session;
+	session.isConnected = undefined;
+	response.render('home', response);
+};
+
 module.exports.CheckLogin = function(request, response){
 	response.title = 'Authentification en cours..';
 	var login = request.body.login;
@@ -16,11 +22,9 @@ module.exports.CheckLogin = function(request, response){
 			console.log(err);
 			return;
 		}
-		console.log(res);
 		if (res == '') {
-			console.log("TEST");
+			//Login / pwd incorrect
 			response.fail = "Login et/ou mot de passe incorrect.";
-			console.log(response.fail);
 			response.render('login', response);
 			return;
 		} else {

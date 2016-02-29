@@ -10,12 +10,12 @@ var router = express.Router();
 
 router.get('/', requireAdmin, HomeController.Index);
 
-// Test upload image
+// TODO en phase de dev, on s'en fiche des requireAdmin. A remettre une fois que la fonctionnalité est testée et fonctionnelle.
 
+// Test upload image
 router.route('/upload')
   .get(CircuitController.uploadGet)
   //.post(CircuitController.uploadFile);
-
 
 // Pilote
 router.route('/repertoirePilote')
@@ -30,19 +30,22 @@ router.route('/add/pilote')
 // Circuits
 router.get('/circuits', requireAdmin, CircuitController.ListerCircuitAdmin);
 
-router.route('/add/circuit') // TODO remettre les requireAdmin
+router.route('/add/circuit')
   .get(CircuitController.add)
   .post(CircuitController.addData);
 
 // TODO router.get('/circuits/:id', requireAdmin, CircuitController.delete);
 
+// Résultats
+router.route('/resultats')
+  .get(ResultatController.GetAllGPAdmin)
+  .post(ResultatController.SaisieResultatsAdmin);
 
 function requireAdmin(req, res, next) {
   if (req.session.isConnected == "" || req.session.isConnected == undefined) {
-    message = "{'fail':'Merci de vous authentifier'}";
-
-    //TODO modifier afin de gérer l'envoi d'un message personnalisé.
-    res.fail = JSON.stringify({ fail: "Merci de vous authentifier" });
+    //console.log(res);
+    //res.fail = "Accès retreint, merci de vous authentifier."
+    // TODO fixer le res.fail lors de la redirection vers la page de login
     res.redirect('/login');
     return;
   }

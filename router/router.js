@@ -35,6 +35,7 @@ module.exports = function(app){
   // Authentification
   app.get('/login',AdminController.Login);
   app.post('/login', AdminController.CheckLogin);
+  app.get('/deconnexion', AdminController.Deconnexion);
 
   // tout le reste
   app.get('*', HomeController.Index);

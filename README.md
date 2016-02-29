@@ -27,5 +27,6 @@ npm install -production
 pour demarrer l'application
 npm start
 
-Penser à regarder que le configDb.js est correct avant de démarrer l'application
-TODO avant le rendu, passer en devDependencies le node-monkey
+## En cours de developpement....
+- TODO avant le rendu, passer en devDependencies le node-monkey
+- TODO Faire un fichier global de conf pour les URL, avec des variables, et faire un required de ce fichier sur chaque page.
