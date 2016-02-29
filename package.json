@@ -1,44 +1,44 @@
 {
-    "name": "GrandPrix_Sylvain_Metayer",
-    "description": "Un exemple Express.js application utilisant MVC Template",
-    "private": true,
-    "version": "0.2.4",
-    "contributors": [{
-      "name": "Sylvain Metayer",
-      "email": "sylvain_metayer@outlook.fr"
-     }],
-     "scripts": {
-       "start": "node app.js"
-     },
-     "repository": {
-      "type": "git",
-      "url": "https://github.com/sylvainmetayer/Node-F1.git"
-      },
-      "bugs": {
-        "url": "https://github.com/sylvainmetayer/Node-F1/issues"
-      },
-      "dependencies": {
-        "express": "~4",
-        "express-handlebars": "*",
-        "express-session": "~1.12",
-        "cookie-parser": "~1.4",
-        "body-parser": ">1.10",
-        "crypto": "~0.0",
-        "string": ">3.0",
-        "async": ">0.9",
-        "moment":">=2.11",
-        "mysql": "*",
-        "unidecode": "*",
-        "sha1":"*",
-        "fs-extra":"*",
-        "formidable":"*",
-        "path":"*",
-        "jquery":"*",
-        "node-monkey":"*"
-      },
-      "scripts": {
-        "start": "node app.js"
-      },
-      "main": "app.js",
-      "license": "MIT"
+  "name": "GrandPrix_Sylvain_Metayer",
+  "description": "Un exemple Express.js application utilisant MVC Template",
+  "private": true,
+  "version": "0.2.4",
+  "contributors": [{
+    "name": "Sylvain Metayer",
+    "email": "sylvain_metayer@outlook.fr"
+  }],
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sylvainmetayer/Node-F1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sylvainmetayer/Node-F1/issues"
+  },
+  "dependencies": {
+    "express": "~4",
+    "express-handlebars": "*",
+    "express-session": "~1.12",
+    "cookie-parser": "~1.4",
+    "body-parser": ">1.10",
+    "crypto": "~0.0",
+    "string": ">3.0",
+    "async": ">0.9",
+    "moment": ">=2.11",
+    "mysql": "*",
+    "unidecode": "*",
+    "sha1": "*",
+    "fs-extra": "*",
+    "formidable": "*",
+    "path": "*",
+    "jquery": "*",
+    "node-monkey": "*"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "main": "app.js",
+  "license": "MIT"
 }

@@ -12,13 +12,12 @@
 
 -->
 <table class="tabpayscir">
-	 {{#each listeEcurie}}
-		<tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
-      <a href="/ecuries/{{this.ecunum}}"> {{this.ecunom}}</a>
-    </td></tr>
- {{/each}}
+	{{#each listeEcurie}}
+		<tr>
+			<td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
+				<a href="/ecuries/{{this.ecunum}}"> {{this.ecunom}}</a>
+			</td>
+		</tr>
+	{{/each}}
 </table>
-<br class="myboth" />
-
-
-{{> detailsEcurie }}
+<br class="myboth" /> {{> detailsEcurie }}

@@ -4,6 +4,7 @@ var ResultatController = require('../controllers/ResultatController');
 var EcurieController = require('../controllers/EcurieController');
 var PiloteController = require('../controllers/PiloteController');
 var CircuitController = require('../controllers/CircuitController');
+var SponsorController = require('../controllers/SponsorController');
 
 var express = require('express');
 var router = express.Router();
@@ -19,7 +20,7 @@ router.route('/upload')
 
 // Pilote
 router.route('/repertoirePilote')
-.get(requireAdmin, PiloteController.ListerPiloteAdmin);
+  .get(requireAdmin, PiloteController.ListerPiloteAdmin);
 
 router.get('/repertoirePilote/:id', requireAdmin, PiloteController.delete);
 
@@ -40,6 +41,14 @@ router.route('/add/circuit')
 router.route('/resultats')
   .get(ResultatController.GetAllGPAdmin)
   .post(ResultatController.SaisieResultatsAdmin);
+
+// Sponsors
+router.route('/sponsors')
+  .get(SponsorController.getAllSponsors);
+
+router.route('/sponsor/add')
+  .get(SponsorController.addForm)
+  .post(SponsorController.addData);
 
 function requireAdmin(req, res, next) {
   if (req.session.isConnected == "" || req.session.isConnected == undefined) {

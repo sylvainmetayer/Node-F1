@@ -1,15 +1,13 @@
 <h1>Liste des circuits enregistrés</h1>
 
 <table class="tabpayscir">
-	 {{#each circuits}}
+	{{#each circuits}}
 		<tr>
-      <td>
-        <img height=20 width=20 src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
-        <a href="/circuits/{{this.cirnum}}"> {{this.cirnom}}</a>
-      </td>
-    </tr>
- {{/each}}
+			<td>
+				<img height=20 width=20 src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
+				<a href="/circuits/{{this.cirnum}}"> {{this.cirnom}}</a>
+			</td>
+		</tr>
+	{{/each}}
 </table>
-<br class="myboth" />
-
-{{> afficherCircuit}}
+<br class="myboth" /> {{> afficherCircuit}}

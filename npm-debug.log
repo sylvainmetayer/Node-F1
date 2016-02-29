@@ -7,7 +7,7 @@
 6 silly lifecycle GrandPrix_Sylvain_Metayer@0.2.4~prestart: no script for prestart, continuing
 7 info lifecycle GrandPrix_Sylvain_Metayer@0.2.4~start: GrandPrix_Sylvain_Metayer@0.2.4
 8 verbose lifecycle GrandPrix_Sylvain_Metayer@0.2.4~start: unsafe-perm in lifecycle true
-9 verbose lifecycle GrandPrix_Sylvain_Metayer@0.2.4~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/media/ocyhc/DATA/Documents/GitHub/S4/Node-F1/node_modules/.bin:/usr/local/bin:/home/ocyhc/software/genymotion:/home/ocyhc/Android/Sdk/platform-tools/:/home/ocyhc/software/android-studio/bin:/home/ocyhc/software/netkit/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/java/jdk1.8.0_45/bin:/opt/java/jdk1.8.0_45/jre/bin
+9 verbose lifecycle GrandPrix_Sylvain_Metayer@0.2.4~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/media/ocyhc/DATA/Documents/GitHub/S4/Node-F1/node_modules/.bin:/usr/local/bin:/home/ocyhc/:/home/ocyhc/software/genymotion:/home/ocyhc/Android/Sdk/platform-tools/:/home/ocyhc/software/android-studio/bin:/home/ocyhc/software/netkit/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/java/jdk1.8.0_45/bin:/opt/java/jdk1.8.0_45/jre/bin
 10 verbose lifecycle GrandPrix_Sylvain_Metayer@0.2.4~start: CWD: /media/ocyhc/DATA/Documents/GitHub/S4/Node-F1
 11 silly lifecycle GrandPrix_Sylvain_Metayer@0.2.4~start: Args: [ '-c', 'node app.js' ]
 12 silly lifecycle GrandPrix_Sylvain_Metayer@0.2.4~start: Returned: code: 1  signal: null

@@ -13,21 +13,21 @@
       <th> Actions</th>
     </tr>
     {{#each pilotes}}
-    <tr>
-      <td>
-        {{ this.pilnom }}
-      </td>
-      <td>
-         {{ this.pilprenom}}
-      </td>
-      <td>
-        {{formatDate this.pildatenais "DD/MM/YYYY"}}
-      </td>
-      <td>
-        <a href="/admin/update/pilote/{{this.pilnum}}">Modifier</a> |
-        <a href="/admin/repertoirePilote/{{this.pilnum}}">Supprimer</a>
-      </td>
-    </tr>
+      <tr>
+        <td>
+          {{ this.pilnom }}
+        </td>
+        <td>
+          {{ this.pilprenom}}
+        </td>
+        <td>
+          {{formatDate this.pildatenais "DD/MM/YYYY"}}
+        </td>
+        <td>
+          <a href="/admin/update/pilote/{{this.pilnum}}">Modifier</a> |
+          <a href="/admin/repertoirePilote/{{this.pilnum}}">Supprimer</a>
+        </td>
+      </tr>
     {{/each}}
   </table>
 

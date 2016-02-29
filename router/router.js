@@ -6,34 +6,34 @@ var CircuitController = require('./../controllers/CircuitController');
 var AdminController = require('../controllers/AdminController');
 
 // Routes
-module.exports = function(app){
+module.exports = function(app) {
 
-// Main Routes
-    app.get('/', HomeController.Index);
+  // Main Routes
+  app.get('/', HomeController.Index);
 
-// pilotes
-    app.get('/repertoirePilote', PiloteController.Repertoire);
-    app.get('/repertoirePilote/:lettre', PiloteController.RepertoireByLetter);
-    app.get('/pilote/:pilote', PiloteController.GetPilote);
+  // pilotes
+  app.get('/repertoirePilote', PiloteController.Repertoire);
+  app.get('/repertoirePilote/:lettre', PiloteController.RepertoireByLetter);
+  app.get('/pilote/:pilote', PiloteController.GetPilote);
 
- // circuits
-   app.get('/circuits', CircuitController.ListerCircuit);
-   app.get('/circuits/:id', CircuitController.GetCircuit);
+  // circuits
+  app.get('/circuits', CircuitController.ListerCircuit);
+  app.get('/circuits/:id', CircuitController.GetCircuit);
 
-// Ecuries
-   app.get('/ecuries', EcurieController.ListerEcurie);
-   app.get('/ecuries/:id', EcurieController.GetEcurie);
+  // Ecuries
+  app.get('/ecuries', EcurieController.ListerEcurie);
+  app.get('/ecuries/:id', EcurieController.GetEcurie);
 
- //Résultats
-   app.get('/resultats', ResultatController.ListerResultat);
-   app.get('/resultats/:id', ResultatController.GetResultat);
+  //Résultats
+  app.get('/resultats', ResultatController.ListerResultat);
+  app.get('/resultats/:id', ResultatController.GetResultat);
 
   //Toutes les routes concernant l'admin.
   var admin = require('./admin');
   app.use('/admin', admin);
 
   // Authentification
-  app.get('/login',AdminController.Login);
+  app.get('/login', AdminController.Login);
   app.post('/login', AdminController.CheckLogin);
   app.get('/deconnexion', AdminController.Deconnexion);
 

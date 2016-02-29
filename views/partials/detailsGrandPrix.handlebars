@@ -1,17 +1,18 @@
 {{#if detailGP}}
-  {{detailGP.gpnom}} ({{formatDate detailGP.gpdate "DD/MM/YYYY" }} ) <br/>
+  {{detailGP.gpnom}} ({{formatDate detailGP.gpdate "DD/MM/YYYY" }} )
+  <br/>
 
-    <table>
-      <tr>
-        <th> Place </th>
-        <th> Pilote </th>
-        <th> Temps </th>
-        <th> Nombre de points </th>
-      </tr>
-      {{#each piloteByGP}}
+  <table>
+    <tr>
+      <th> Place </th>
+      <th> Pilote </th>
+      <th> Temps </th>
+      <th> Nombre de points </th>
+    </tr>
+    {{#each piloteByGP}}
       <tr>
         <td>
-        {{inc @index}}
+          {{inc @index}}
         </td>
         <td>
           {{ this.pilnom }} - {{ this.pilprenom}}
@@ -23,8 +24,8 @@
           TODO gestion des points
         </td>
       </tr>
-      {{/each}}
-    </table>
+    {{/each}}
+  </table>
 
   {{detailGP.gpcommentaire}}
 {{/if}}

@@ -4,20 +4,20 @@
       <th>Photo</th>
       <th>Nom / Prenom</th>
     </tr>
-      {{#each listePilote}}
-       <tr>
-         <td>
-           <a href="/pilote/{{this.pilnum}}">
-             <img with="90" height="90" src="/image/pilote/{{this.phoadresse}}" alt="{{this.phocommentaire}}"/>
-           </a>
-         </td>
-         <td>
-           <a href="/pilote/{{this.pilnum}}">
+    {{#each listePilote}}
+      <tr>
+        <td>
+          <a href="/pilote/{{this.pilnum}}">
+            <img with="90" height="90" src="/image/pilote/{{this.phoadresse}}" alt="{{this.phocommentaire}}" />
+          </a>
+        </td>
+        <td>
+          <a href="/pilote/{{this.pilnum}}">
              {{this.pilnom}} {{this.pilprenom}}
            </a>
-         </td>
-       </tr>
-      {{/each}}
+        </td>
+      </tr>
+    {{/each}}
 
   </table>
 {{/if}}

@@ -14,42 +14,41 @@
 </head>
 
 <body class="monBody">
-<div id="container">
-	<div id="header">
-	<img src="/image/header.jpg" alt="WROOM l'encyclopédie de la F1" />
-	</div>
-	<div id="menu">
-		{{#if session.isConnected}}
-			<a href="/admin/"># ACCUEIL</a> |
-			<a href="/admin/repertoirePilote"># PILOTES</a> |
-			<a href="/admin/circuits"># CIRCUITS</a> |
-			<a href="/admin/ecuries"># ECURIES</a> |
-			<a href="/admin/resultats"># RESULTATS</a> |
-			<a href="/admin/sponsors"># SPONSORS</a> |
-			<a href="/deconnexion">Retour au site</a>
-		{{else}}
-			<a href="/accueil">ACCUEIL</a> |
-			<a href="/repertoirePilote">REPERTOIRE DES PILOTES</a> |
-			<a href="/circuits">LES CIRCUITS 2016</a> |
-			<a href="/ecuries">ECURIES</a> |
-			<a href="/resultats">RESULTATS</a> |
-			<a href="/login">admin</a>
-		{{/if}}
+	<div id="container">
+		<div id="header">
+			<img src="/image/header.jpg" alt="WROOM l'encyclopédie de la F1" />
+		</div>
+		<div id="menu">
+			{{#if session.isConnected}}
+				<a href="/admin/"># ACCUEIL</a> |
+				<a href="/admin/repertoirePilote"># PILOTES</a> |
+				<a href="/admin/circuits"># CIRCUITS</a> |
+				<a href="/admin/ecuries"># ECURIES</a> |
+				<a href="/admin/resultats"># RESULTATS</a> |
+				<a href="/admin/sponsors"># SPONSORS</a> |
+				<a href="/deconnexion">Retour au site</a>
+			{{else}}
+				<a href="/accueil">ACCUEIL</a> |
+				<a href="/repertoirePilote">REPERTOIRE DES PILOTES</a> |
+				<a href="/circuits">LES CIRCUITS 2016</a> |
+				<a href="/ecuries">ECURIES</a> |
+				<a href="/resultats">RESULTATS</a> |
+				<a href="/login">admin</a>
+			{{/if}}
+
+		</div>
+		<div id="contenu">
+			<br/>
+			<br/> {{{body}}}
+		</div>
+		<div id="footer">
+			L'encyclopédie de la F1 depuis janvier 2016 (en NodeJS)
+			<br /> © IUT du Limousin DUT Informatique année 2
+			<br />
+			<img src="/image/nodejs.png" id="LogoNode" alt="Logo NodeJs" title="Logo Node.JS" />
+		</div>
 
 	</div>
-	<div id="contenu">
-		<br/>
-		<br/>
-			{{{body}}}
-	</div>
-				<div id="footer">
-					L'encyclopédie de la F1 depuis janvier 2016 (en NodeJS)
-					<br />
-					© IUT du Limousin DUT Informatique année 2
-					<br />
-					<img src="/image/nodejs.png" id= "LogoNode" alt="Logo NodeJs" title="Logo Node.JS" />
-			</div>
-
-</div>
 </body>
+
 </html>

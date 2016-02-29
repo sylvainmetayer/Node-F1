@@ -1,0 +1,35 @@
+<form action="/admin/resultats/saisieResultatCheck" method="post">
+  <table>
+    <tr>
+      <th>
+        Place
+      </th>
+      <th>
+        Pilote
+      </th>
+      <th>
+        Temps
+      </th>
+      <th>
+        Points
+      </th>
+    </tr>
+    {{#each resultats}}
+      <tr>
+        <td>
+          {{inc @index}}
+        </td>
+        <td>
+          {{this.pilnom}}
+        </td>
+        <td>
+          {{this.tempscourse}}
+        </td>
+        <td>
+          TODO points
+        </td>
+      </tr>
+    {{/each}}
+
+  </table>
+</form>

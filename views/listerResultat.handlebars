@@ -2,13 +2,12 @@
 
 
 <table class="tabpayscir">
-	 {{#each listeResultat}}
-		<tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
-      <a href="/resultats/{{this.gpnum}}"> {{this.gpnom}}</a>
-    </td></tr>
- {{/each}}
+	{{#each listeResultat}}
+		<tr>
+			<td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
+				<a href="/resultats/{{this.gpnum}}"> {{this.gpnom}}</a>
+			</td>
+		</tr>
+	{{/each}}
 </table>
-<br class="myboth" />
-
-
-{{> detailsGrandPrix}}
+<br class="myboth" /> {{> detailsGrandPrix}}
