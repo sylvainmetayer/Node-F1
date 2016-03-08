@@ -6,6 +6,15 @@ var PiloteController = require('../controllers/PiloteController');
 var CircuitController = require('../controllers/CircuitController');
 var SponsorController = require('../controllers/SponsorController');
 
+
+/*
+SYNTAXE DES ROUTES
+/xxx/add : ajout
+/xxx/update : maj
+/xxx/delete : supprimer
+/xxx/:id : details
+*/
+
 var express = require('express');
 var router = express.Router();
 
@@ -30,7 +39,7 @@ router.route('/circuits/add')
   .get(requireAdmin, CircuitController.add)
   .post(requireAdmin, CircuitController.addData);
 
-// TODO router.get('/circuits/:id', requireAdmin, CircuitController.delete);
+router.get('/circuits/delete/:id', requireAdmin, CircuitController.delete);
 
 /* GESTION DES RESULTATS */
 router.route('/resultats/')
@@ -45,13 +54,12 @@ router.route('/sponsors/add')
   .get(requireAdmin, SponsorController.addForm)
   .post(requireAdmin, SponsorController.addData);
 
+/* GESTION DES ECURIES */
+router.get('/ecuries', requireAdmin, EcurieController.GetAllAEcurieAdmin);
 
 /* FONCTION CONTROLE CONNEXION */
 function requireAdmin(req, res, next) {
   if (req.session.isConnected == "" || req.session.isConnected == undefined) {
-    //console.log(res);
-    //res.fail = "Accès retreint, merci de vous authentifier."
-    // TODO fixer le res.fail lors de la redirection vers la page de login
     res.redirect('/login');
     return;
   }

@@ -3,6 +3,7 @@ var sponsorModel = require('../models/sponsor.js');
 var photoModel = require('../models/photo.js');
 var ecurieModel = require('../models/ecurie.js');
 var natioModel = require('../models/nationalite.js');
+var courseModel = require("../models/course.js");
 var async = require('async');
 
 /* PARTIE CLIENT */
@@ -102,8 +103,8 @@ module.exports.GetPilote = function(request, response) {
 
 /* PARTIE ADMIN */
 
-module.exports.ListerPiloteAdmin = function(err, res) {
-  res.title = 'Test - Répertoire des pilotes';
+module.exports.ListerPiloteAdmin = function(req, res) {
+  res.title = 'Admin - Liste des pilotes';
 
   piloteModel.getAllPilotes(function(err, result) {
     if (err) {
@@ -111,14 +112,48 @@ module.exports.ListerPiloteAdmin = function(err, res) {
       return;
     }
     res.pilotes = result;
-    res.render('adminListerPilote', res);
+    res.render('admin/adminListerPilote', res);
   });
 };
 
-module.exports.delete = function(err, res) {
-  res.title = 'Admin - Répertoire des pilotes';
-  res.render('adminListerPilote', res);
-  //TODO supprimer un pilote
+module.exports.delete = function(req, res) {
+  var id = req.params.id;
+  async.series([
+      function(callback) {
+        courseModel.deleteByPilote(id, function(erreur, resultat) {
+          callback(erreur, resultat);
+        });
+      },
+      function(callback) {
+        courseModel.deleteEssaisByPilote(id, function(erreur, resultat) {
+          callback(erreur, resultat);
+        });
+      },
+      function(callback) {
+        sponsorModel.deleteByPilote(id, function(erreur, resultat) {
+          callback(erreur, resultat);
+        });
+      },
+      function(callback) {
+        photoModel.deleteByPilote(id, function(erreur, resultat) {
+          callback(erreur, resultat);
+        });
+      },
+      function(callback) {
+        piloteModel.delete(id, function(err, result) { 
+          callback(err, result);
+        });
+      }
+
+    ],
+    function(err, result) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.redirect("/admin/pilotes");
+    }
+  );
 };
 
 module.exports.addForm = function(request, response) {
@@ -143,7 +178,7 @@ module.exports.addForm = function(request, response) {
       }
       response.ecuries = result[0];
       response.nationalites = result[1];
-      response.render('adminAddPilote', response);
+      response.render('admin/adminAddPilote', response);
     }
   );
 };
@@ -164,7 +199,7 @@ module.exports.addData = function(request, response) {
   tab = pildatenaisForm.split("/");
   console.log(tab);
   //var moment = require(moment);
-  var pildatenais = new Date(tab[2], tab[1]-1, tab[0]);
+  var pildatenais = new Date(tab[2], tab[1] - 1, tab[0]);
 
   var dataPilote = {
     pilnom,

@@ -1,0 +1,13 @@
+{{#if resultat}}
+
+  <div class="home">
+    <h2>Derniers Résultats</h2>
+    <p>
+      {{resultat.gpnom}} du {{formatDate resultat.gpdate "DD/MM/YYYY"}}
+      <br/> Mise à jour le {{formatDate resultat.gpdatemaj "DD/MM/YYYY"}}
+      <br/>
+      <a href="/resultats/{{resultat.gpnum}}">Voir les résultats</a>
+    </p>
+  </div>
+
+{{/if}}

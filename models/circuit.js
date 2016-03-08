@@ -40,3 +40,13 @@ module.exports.add = function(data, callback) {
     }
   })
 }
+
+module.exports.delete = function(id, callback) {
+  db.getConnection(function(err, connexion) {
+    if (!err) {
+      var sql = "delete from circuit WHERE cirnum = " + id;
+      connexion.query(sql, callback);
+      connexion.release();
+    }
+  })
+}

@@ -5,7 +5,11 @@
   <br/> Pays : {{ecurie.paynom}}
   <br/> Fournisseur de pneumatiques : {{ecurie.fpnom}}
   <br/>
-  <p>Sponsors : TODO <!-- TODO Afficher les sponsors --></p>
+  <p>Sponsors :
+    {{#each sponsors}}
+      {{this.sponom}},&nbsp;
+    {{/each}}
+  </p>
 
   <p>
     {{#each piloteEcurie}}

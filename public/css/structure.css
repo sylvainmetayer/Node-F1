@@ -100,3 +100,12 @@
   overflow:hidden;
   padding:8px;
 }
+
+.home {
+  text-align: center;
+  border: 1px solid black;
+}
+
+.lettres {
+  text-align: center;
+}

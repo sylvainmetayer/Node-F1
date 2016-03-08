@@ -27,7 +27,7 @@ module.exports.get = function(idGP, callback) {
 module.exports.getPiloteInGP = function(idGP, callback) {
   db.getConnection(function(err, connexion) {
     if (!err) {
-      var sql = "SELECT p.pilnom, p.pilprenom, p.pilnum, c.tempscourse FROM grandprix gp JOIN course c ON c.gpnum=gp.gpnum JOIN pilote p ON p.pilnum=c.pilnum WHERE gp.gpnum =" + idGP + " ORDER BY tempscourse ASC";
+      var sql = "SELECT p.pilnom, p.pilprenom, p.pilnum, c.tempscourse, pilpoints FROM grandprix gp JOIN course c ON c.gpnum=gp.gpnum JOIN pilote p ON p.pilnum=c.pilnum JOIN points po on po.ptnbpointsplace =p.pilpoints WHERE gp.gpnum =" + idGP + " ORDER BY tempscourse ASC";
       connexion.query(sql, callback);
       connexion.release();
     }
@@ -43,3 +43,13 @@ module.exports.getSaisieResultat = function(idGP, callback) {
     }
   });
 };
+
+module.exports.getLastResultat = function(callback) {
+  db.getConnection(function(err, connexion) {
+    if (!err) {
+      var sql = "SELECT gpnum, gpnom, gpdate, gpdatemaj from grandprix ORDER BY gpdatemaj DESC LIMIT 1";
+      connexion.query(sql, callback);
+      connexion.release();
+    }
+  })
+}
