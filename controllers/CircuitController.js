@@ -137,8 +137,9 @@ module.exports.addData = function(request, response) {
       paynum: fields.paynum,
       cirlongueur: fields.cirlongueur,
       cirtext: fields.cirtext,
-      ciradresseimage: "/public/upload/" + files.ciradresseimage.name
+      ciradresseimage: files.ciradresseimage.name
     }
+    console.log(data);
     circuitModel.add(data);
   });
 
@@ -154,7 +155,7 @@ module.exports.addData = function(request, response) {
   form.on('end', function(fields, files) {
     var temp_path = this.openedFiles[0].path;
     var file_name = this.openedFiles[0].name;
-    var new_location = path.join(__dirname, '../public/upload/');
+    var new_location = path.join(__dirname, '../public/image/circuit/');
     fs.copy(temp_path, new_location + file_name, function(err) {
       if (err) {
         console.error(err);
@@ -163,9 +164,7 @@ module.exports.addData = function(request, response) {
         fs.unlink(temp_path, function(err) {
           if (err) {
             console.error(err);
-            console.log("TROUBLE deletion temp !");
           } else {
-            console.log("success deletion temp !");
             response.redirect('/admin/circuits');
             return;
           }

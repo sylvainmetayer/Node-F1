@@ -1,31 +1,32 @@
 {{#if ecurie }}
-  <img class="small left" src="/image/ecurie/{{ecurie.ecuadresseimage}}" alt="Image de l'écurie" /> Nom : {{ecurie.ecunom}}
-  <br/> Directeur : {{ecurie.ecunomdir}}
-  <br/> Adresse : {{ecurie.ecuadrsiege}}
-  <br/> Pays : {{ecurie.paynom}}
-  <br/> Fournisseur de pneumatiques : {{ecurie.fpnom}}
-  <br/>
-  <p>Sponsors :
-    {{#each sponsors}}
-      {{this.sponom}},&nbsp;
-    {{/each}}
-  </p>
-
+  <img class="image-float" src="/image/ecurie/{{ecurie.ecuadresseimage}}" alt="Image de l'écurie" />
+  <p> Nom : {{ecurie.ecunom}}</p>
+  <p> Directeur : {{ecurie.ecunomdir}}</p>
+  <p> Adresse : {{ecurie.ecuadrsiege}}</p>
+  <p> Pays : {{ecurie.paynom}}</p>
+  <p> Fournisseur de pneumatiques : {{ecurie.fpnom}}</p>
   <p>
-    {{#each piloteEcurie}}
-      <a class="tooltip" href="/pilote/{{this.pilnum}}">
+    <p>Sponsors :
+      {{#each sponsors}}
+        {{this.sponom}}&nbsp;
+      {{/each}}
+    </p>
+
+    <p>
+      {{#each piloteEcurie}}
+        <a class="tooltip" href="/pilote/{{this.pilnum}}">
      {{this.pilnom}}||
      <span>
-       <img src="/image/pilote/{{this.phoadresse}}">
+       <img height="100px" width="100px" src="/image/pilote/{{this.phoadresse}}">
      </span>
   </a>
-    {{/each}}
-  </p>
+      {{/each}}
+    </p>
 
-  <p>Voiture :
-    <br/>
-    {{#each voitureEcurie}}
-      <img src="/image/ecurie/voiture/{{this.voiadresseimage}}" alt="Image de la voiture" /> {{this.voinom}} {{this.typelibelle}}
-    {{/each}}
-  </p>
+    <p>Voitures :</p>
+    <p>
+      {{#each voitureEcurie}}
+        <img width="150px" height="150px" src="/image/ecurie/voiture/{{this.voiadresseimage}}" alt="Image de la voiture" /> <div>{{this.voinom}} {{this.typelibelle}}</div> <br/>
+      {{/each}}
+    </p>
 {{/if}}

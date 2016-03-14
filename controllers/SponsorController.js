@@ -13,7 +13,7 @@ module.exports.getAllSponsors = function(request, response) {
       return;
     }
     response.sponsors = resultat;
-    response.render('adminListerSponsors', response);
+    response.render('admin/adminListerSponsors', response);
   });
 };
 
@@ -28,7 +28,7 @@ module.exports.addForm = function(request, response) {
       return;
     }
     response.ecuries = resultat;
-    response.render('adminAddSponsor', response);
+    response.render('admin/adminAddSponsor', response);
   })
 };
 

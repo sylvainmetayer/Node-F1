@@ -19,7 +19,7 @@ module.exports.getListeEcurie = function(callback) {
 module.exports.getAllEcurie = function(callback) {
   db.getConnection(function(err, connexion) {
     if (!err) {
-      var sql = "SELECT ecunum, ecunom FROM ecurie e ORDER BY ecunom";
+      var sql = "SELECT ecunum, ecunom FROM ecurie e ORDER BY ecunom ASC";
       connexion.query(sql, callback);
       connexion.release();
     }
@@ -74,7 +74,7 @@ module.exports.getEcurie = function(idPilote, callback) {
 module.exports.GetAllAEcurieAdmin = function(callback) {
   db.getConnection(function(err, connexion) {
     if (!err) {
-      var sql = "SELECT ecunomdir, ecunum, ecunom, ecupoints FROM ecurie";
+      var sql = "SELECT ecunomdir, ecunum, ecunom, ecupoints FROM ecurie ORDER BY ecunom ASC";
       connexion.query(sql, callback);
       connexion.release();
     }

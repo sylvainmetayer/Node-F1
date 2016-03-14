@@ -1,13 +1,13 @@
-<h1>Liste des résulats</h1>
+<div class="mycenter"><h1>Liste des résulats</h1></div>
 
 <div>
 	<form action="#" method="post">
-		<label for="gpnum">Selectionner un grand prix :</label>
+		<p><label for="gpnum">Selectionner un grand prix :</label><br/>
 		<select id="gpnum" name="gpnum">
 			{{#each listeResultat}}
 				<option value="{{this.gpnum}}">{{this.gpnom}}</option>
 			{{/each}}
-		</select>
+		</select></p>
 		<input type="submit" value="Valider">
 	</form>
 </div>

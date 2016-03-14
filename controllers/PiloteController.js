@@ -60,7 +60,7 @@ module.exports.GetPilote = function(request, response) {
   async.parallel([
       function(callback) {
         piloteModel.getPilote(pilote, function(err, result) {
-          callback(null, result)
+          callback(err, result)
         });
       }, //Fin callback 0
       function(callback) {

@@ -67,7 +67,7 @@ module.exports.GetAllGPAdmin = function(request, response) {
     }
     response.listeResultat = resultat;
 
-    response.render('adminListerGP', response);
+    response.render('admin/adminListerGP', response);
   });
 };
 
@@ -84,7 +84,7 @@ module.exports.SaisieResultatsAdmin = function(request, response) {
     }
     response.resultats = resultat;
     console.log(response.resultats);
-    response.render('adminSaisieResultatGP', response);
+    response.render('admin/adminSaisieResultatGP', response);
     // TODO finir la saisie des resultats, car c'est pas ça !
   });
 };
