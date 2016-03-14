@@ -80,3 +80,14 @@ module.exports.GetAllAEcurieAdmin = function(callback) {
     }
   })
 }
+
+module.exports.add = function(data, callback) {
+  db.getConnection(function(err, connexion) {
+    if (!err) {
+      var sql = "INSERT INTO ecurie SET ?";
+      connexion.query(sql, data, callback);
+      console.log(sql);
+      connexion.release();
+    }
+  })
+}

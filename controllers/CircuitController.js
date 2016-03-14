@@ -65,7 +65,6 @@ module.exports.ListerCircuitAdmin = function(request, response) {
   });
 };
 
-
 module.exports.delete = function(req, res) {
 
   /* Dans l'ordre :
@@ -106,8 +105,6 @@ module.exports.delete = function(req, res) {
     }
   );
 };
-
-
 
 module.exports.add = function(request, response) {
   response.title = "Ajouter un circuit";
@@ -172,63 +169,4 @@ module.exports.addData = function(request, response) {
       }
     });
   });
-}
-
-
-uploadFile = function(request) {
-
-  console.log("COUCOU JE RENTRE POUR UPLOAD LE FICHIER");
-
-  //console.log(request + " \n\nFILE : ENTREE");
-  var form = new formidable.IncomingForm();
-
-  form.parse(request, function(err, fields, files) {
-    console.log("PARSE OK ? ");
-    //console.log(util.inspect({fields: fields, files: files}));
-    var data = {
-      cirnom: fields.cirnom,
-      cirnbspectateurs: fields.cirnbspectateurs,
-      paynum: fields.paynum,
-      cirlongueur: fields.cirlongueur,
-      cirtext: fields.cirtext,
-      ciradresseimage: "/public/upload/" + files.ciradresseimage.name
-    }
-    return data;
-  });
-
-  form.on('fileBegin', function(name, file) {
-    console.log("COUCOU");
-    file.path = path.join(__dirname, '../public/temp/') + file.name;
-  });
-
-  form.on('progress', function(bytesReceived, bytesExpected) {
-    var percent_complete = (bytesReceived / bytesExpected) * 100;
-    console.log(percent_complete.toFixed(2));
-  });
-
-  form.on('end', function(fields, files) {
-    var temp_path = this.openedFiles[0].path;
-    var file_name = this.openedFiles[0].name;
-    var new_location = path.join(__dirname, '../public/upload/');
-    fs.copy(temp_path, new_location + file_name, function(err) {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log("success!");
-        fs.unlink(temp_path, function(err) {
-          if (err) {
-            console.error(err);
-            console.log("TROUBLE deletion temp !");
-          } else {
-            console.log("success deletion temp !");
-            return;
-          }
-        });
-      }
-    });
-  });
-}
-
-module.exports.uploadGet = function(request, response) {
-  response.render("admin/upload");
 }

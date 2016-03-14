@@ -6,7 +6,6 @@ var PiloteController = require('../controllers/PiloteController');
 var CircuitController = require('../controllers/CircuitController');
 var SponsorController = require('../controllers/SponsorController');
 
-
 /*
 SYNTAXE DES ROUTES
 /xxx/add : ajout
@@ -19,11 +18,6 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', requireAdmin, HomeController.Index);
-
-// Test upload image
-router.route('/upload')
-  .get(CircuitController.uploadGet)
-  //.post(CircuitController.uploadFile);
 
 /* GESTION DES PILOTES */
 
@@ -56,6 +50,9 @@ router.route('/sponsors/add')
 
 /* GESTION DES ECURIES */
 router.get('/ecuries', requireAdmin, EcurieController.GetAllAEcurieAdmin);
+router.route("/ecuries/add")
+  .get(requireAdmin, EcurieController.addForm)
+  .post(requireAdmin, EcurieController.addData);
 
 /* FONCTION CONTROLE CONNEXION */
 function requireAdmin(req, res, next) {
