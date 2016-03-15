@@ -27,7 +27,7 @@ module.exports.getPiloteByLetter = function(lettre, callback) {
 module.exports.getPilote = function(pilote, callback) {
   db.getConnection(function(err, connexion) {
     if (!err) {
-      var sql = "SELECT p.pilnum, p.pilnom, p.pilprenom, paynom, p.pildatenais, pilpoids, piltaille, piltexte";
+      var sql = "SELECT p.pilnum, p.pilnom, p.pilprenom, paynom, p.pilpoints, p.paynum, p.ecunum, p.pildatenais, pilpoids, piltaille, piltexte";
       sql += " FROM pilote p JOIN pays pa on pa.paynum=p.paynum ";
       sql += " WHERE p.pilnum=" + pilote;
 
@@ -51,6 +51,16 @@ module.exports.add = function(data, callback) {
   db.getConnection(function(err, connexion) {
     if (!err) {
       var sql = "INSERT INTO pilote SET ?";
+      connexion.query(sql, data, callback);
+      connexion.release();
+    }
+  })
+}
+
+module.exports.update = function(data, callback) {
+  db.getConnection(function(err, connexion) {
+    if (!err) {
+      var sql = "UPDATE pilote SET ? where pilnum="+data.pilnum;
       connexion.query(sql, data, callback);
       connexion.release();
     }

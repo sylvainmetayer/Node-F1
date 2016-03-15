@@ -119,6 +119,98 @@ module.exports.add = function(request, response) {
   });
 }
 
+module.exports.updateForm = function(request, response) {
+  response.title = "Modifier un circuit";
+
+  var id = request.params.id;
+
+  async.parallel([
+      function(callback) {
+        paysModel.getAllNationnalites(function(err, result) {
+          callback(err, result);
+        })
+      },
+      function(callback) {
+        circuitModel.get(id, function(erreur, resultat) {
+          callback(erreur, resultat);
+        })
+      }
+    ],
+    function(err, result) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      response.pays = result[0];
+      response.circuit = result[1][0];
+      response.render('admin/updateCircuitForm', response);
+    }
+  );
+}
+
+module.exports.updateData = function(request, response) {
+  var form = new formidable.IncomingForm();
+
+  form.parse(request, function(err, fields, files) {
+    console.log(util.inspect({
+      fields: fields,
+      files: files
+    }));
+
+    if (files.ciradresseimage.name == "") {
+      var data = {
+        cirnom: fields.cirnom,
+        cirnbspectateurs: fields.cirnbspectateurs,
+        paynum: fields.paynum,
+        cirlongueur: fields.cirlongueur,
+        cirtext: fields.cirtext,
+      }
+    } else {
+      var data = {
+        cirnom: fields.cirnom,
+        cirnbspectateurs: fields.cirnbspectateurs,
+        paynum: fields.paynum,
+        cirlongueur: fields.cirlongueur,
+        cirtext: fields.cirtext,
+        ciradresseimage: files.ciradresseimage.name,
+      }
+    }
+
+    console.log(data);
+    circuitModel.update(data);
+  });
+
+  form.on('fileBegin', function(name, file) {
+    file.path = path.join(__dirname, '../public/temp/') + file.name;
+  });
+
+  form.on('progress', function(bytesReceived, bytesExpected) {
+    var percent_complete = (bytesReceived / bytesExpected) * 100;
+    console.log(percent_complete.toFixed(2));
+  });
+
+  form.on('end', function(fields, files) {
+    var temp_path = this.openedFiles[0].path;
+    var file_name = this.openedFiles[0].name;
+    var new_location = path.join(__dirname, '../public/image/circuit/');
+    fs.copy(temp_path, new_location + file_name, function(err) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log("success!");
+        fs.unlink(temp_path, function(err) {
+          if (err) {
+            console.error(err);
+          } else {
+            response.redirect('/admin/circuits');
+            return;
+          }
+        });
+      }
+    });
+  });
+}
+
 module.exports.addData = function(request, response) {
 
   var form = new formidable.IncomingForm();

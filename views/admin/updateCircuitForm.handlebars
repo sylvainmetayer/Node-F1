@@ -4,13 +4,13 @@
     <p>
       <label for="cirnom">Nom</label>
       <br/>
-      <input type="text" name="cirnom" id="cirnom" required>
+      <input type="text" name="cirnom" value="{{circuit.cirnom}}" id="cirnom" required>
     </p>
 
     <p>
       <label for="cirlongueur">Longueur</label>
       <br/>
-      <input type="number" name="cirlongueur" id="cirlongueur" required>
+      <input type="number" name="cirlongueur" id="cirlongueur" value="{{circuit.cirlongueur}}" required>
     </p>
 
     <p>
@@ -27,19 +27,19 @@
       <label for="ciradresseimage">Image</label>
       <br/>
       <input type="file" name="ciradresseimage" id="ciradresseimage" multiple="multiple">
-      <p><img src="#" alt="Aperçu non disponible." id="userPicture" /></p>
+      <p><img src="/image/circuit/{{circuit.ciradresseimage}}" alt="Aperçu non disponible." id="userPicture" /></p>
     </p>
 
     <p>
       <label for="cirnbspectateurs">Nombre de spectateurs</label>
       <br/>
-      <input type="number" name="cirnbspectateurs" id="cirnbspectateurs" required>
+      <input type="number" value="{{circuit.cirnbspectateurs}}" name="cirnbspectateurs" id="cirnbspectateurs" required>
     </p>
 
     <p>
       <label for="cirtext">Description</label>
       <br/>
-      <input type="text" name="cirtext" id="cirtext" required>
+      <input type="text" name="cirtext" id="cirtext" value="{{circuit.cirtext}}" required>
     </p>
 
     <input type="submit" value="Ajouter">

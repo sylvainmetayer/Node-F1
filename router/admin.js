@@ -25,9 +25,15 @@ router.get('/pilotes', requireAdmin, PiloteController.ListerPiloteAdmin);
 router.get("/pilotes/add", requireAdmin, PiloteController.addForm);
 router.post("/pilotes/add", requireAdmin, PiloteController.addData);
 router.get('/pilotes/delete/:id', requireAdmin, PiloteController.delete);
+router.route('/pilotes/update/:id')
+  .get(requireAdmin, PiloteController.updateForm)
+  .post(requireAdmin, PiloteController.updateData);
 
 /* GESTION DES CIRCUITS */
 router.get('/circuits', requireAdmin, CircuitController.ListerCircuitAdmin);
+router.route('/circuits/update/:id')
+  .get(requireAdmin, CircuitController.updateForm)
+  .post(requireAdmin, CircuitController.updateData);
 
 router.route('/circuits/add')
   .get(requireAdmin, CircuitController.add)

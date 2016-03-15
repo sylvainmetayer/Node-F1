@@ -183,6 +183,85 @@ module.exports.addForm = function(request, response) {
   );
 };
 
+module.exports.updateForm = function(request, response) {
+  response.title = "Modification d'un pilote";
+
+  var id = request.params.id;
+
+  async.parallel([
+      function(callback) {
+        ecurieModel.getListeEcurie(function(err, result) {
+          callback(err, result);
+        })
+      },
+      function(callback) {
+        natioModel.getAllNationnalites(function(erreur, resultat) {
+          callback(erreur, resultat);
+        })
+      },
+      function(callback) {
+        piloteModel.getPilote(id, function(err, res) {
+          callback(err, res);
+        })
+      }
+    ],
+    function(err, result) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      response.ecuries = result[0];
+      response.nationalites = result[1];
+      response.pilote = result[2][0];
+      response.render('admin/piloteUpdateForm', response);
+    }
+  );
+
+}
+
+module.exports.updateData = function(request, response) {
+
+  var pilprenom = request.body.pilprenom,
+    pilnom = request.body.pilnom,
+    paynum = request.body.paynum,
+    ecunum = request.body.ecunum,
+    pilpoints = request.body.pilpoints,
+    pilpoids = request.body.pilpoids,
+    piltaille = request.body.pitaille,
+    piltexte = request.body.piltexte;
+
+  var pildatenaisForm = request.body.pildatenais;
+  tab = pildatenaisForm.split("/");
+  var pildatenais = new Date(tab[2], tab[1] - 1, tab[0]);
+  var pilnum = request.body.pilnum;
+
+  var dataPilote = {
+    pilnum,
+    pilnom,
+    pilprenom,
+    paynum,
+    ecunum,
+    pilpoints,
+    pildatenais,
+    pilpoids,
+    piltaille,
+    piltexte
+  }
+
+  piloteModel.update(dataPilote, function(erreur, resultat) {
+    if (erreur) {
+      console.log(erreur);
+      return;
+    }
+    response.result = {
+      ajout: "Ajout OK"
+    };
+    response.redirect("/admin/pilotes");
+    return;
+  });
+
+}
+
 module.exports.addData = function(request, response) {
   response.title = 'Ajout d\'un pilote';
 
@@ -198,7 +277,6 @@ module.exports.addData = function(request, response) {
   var pildatenaisForm = request.body.pildatenais;
   tab = pildatenaisForm.split("/");
   console.log(tab);
-  //var moment = require(moment);
   var pildatenais = new Date(tab[2], tab[1] - 1, tab[0]);
 
   var dataPilote = {
