@@ -35,20 +35,17 @@ module.exports.addForm = function(request, response) {
 module.exports.addData = function(request, response) {
   response.title = 'Ajouter un sponsor';
 
-  var sponom = request.body.sponom;
-  var sposectactivite = request.body.sposectactivite;
 
   var dataSponsor = {
-    sponom,
-    sposectactivite
+    sponom:request.body.sponom,
+    sposectactivite:request.body.sposectactivite
   };
 
   var sponumInserted;
-  var ecunum = request.body.ecunum;
-  var sponum = sponumInserted;
+  // FIXME Test si ça marche encore, sinon on repasse à l'ancienne version.
   var dataEcurie = {
-    ecunum,
-    sponum
+    ecunum:request.body.ecunum,
+    sponum:sponumInserted
   }
 
   async.series([
