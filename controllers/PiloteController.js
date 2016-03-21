@@ -223,7 +223,7 @@ module.exports.updateData = function(request, response) {
 
   var pildatenaisForm = request.body.pildatenais;
   tab = pildatenaisForm.split("/");
-  var = new Date(tab[2], tab[1] - 1, tab[0]);
+  var pildatenaissance = new Date(tab[2], tab[1] - 1, tab[0]);
 
   var dataPilote = {
     pilnum: request.body.pilnum,
@@ -257,7 +257,7 @@ module.exports.addData = function(request, response) {
 
   var pildatenaisForm = request.body.pildatenais;
   tab = pildatenaisForm.split("/");
-  var = new Date(tab[2], tab[1] - 1, tab[0]);
+  var pildatenaissance = new Date(tab[2], tab[1] - 1, tab[0]);
 
   var dataPilote = {
     pilnum: request.body.pilnum,
