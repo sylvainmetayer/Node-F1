@@ -159,6 +159,7 @@ module.exports.updateData = function(request, response) {
 
     if (files.ciradresseimage.name == "") {
       var data = {
+        cirnum: fields.cirnum,
         cirnom: fields.cirnom,
         cirnbspectateurs: fields.cirnbspectateurs,
         paynum: fields.paynum,
@@ -167,6 +168,7 @@ module.exports.updateData = function(request, response) {
       }
     } else {
       var data = {
+        cirnum: fields.cirnum,
         cirnom: fields.cirnom,
         cirnbspectateurs: fields.cirnbspectateurs,
         paynum: fields.paynum,

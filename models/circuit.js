@@ -41,6 +41,16 @@ module.exports.add = function(data, callback) {
   })
 }
 
+module.exports.update = function(data, callback) {
+  db.getConnection(function(err, connexion) {
+    if (!err) {
+      var sql = "UPDATE circuit SET ? where cirnum="+data.cirnum;
+      connexion.query(sql, data, callback);
+      connexion.release();
+    }
+  })
+}
+
 module.exports.delete = function(id, callback) {
   db.getConnection(function(err, connexion) {
     if (!err) {

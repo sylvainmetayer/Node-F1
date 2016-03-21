@@ -227,7 +227,7 @@ module.exports.updateData = function(request, response) {
     ecunum = request.body.ecunum,
     pilpoints = request.body.pilpoints,
     pilpoids = request.body.pilpoids,
-    piltaille = request.body.pitaille,
+    piltaille = request.body.piltaille,
     piltexte = request.body.piltexte;
 
   var pildatenaisForm = request.body.pildatenais;
@@ -254,7 +254,7 @@ module.exports.updateData = function(request, response) {
       return;
     }
     response.result = {
-      ajout: "Ajout OK"
+      ajout: "Update OK"
     };
     response.redirect("/admin/pilotes");
     return;
@@ -271,7 +271,7 @@ module.exports.addData = function(request, response) {
     ecunum = request.body.ecunum,
     pilpoints = request.body.pilpoints,
     pilpoids = request.body.pilpoids,
-    piltaille = request.body.pitaille,
+    piltaille = request.body.piltaille,
     piltexte = request.body.piltexte;
 
   var pildatenaisForm = request.body.pildatenais;

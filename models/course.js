@@ -3,7 +3,7 @@ var db = require('../configDb');
 module.exports.deleteByPilote = function(id, callback) {
   db.getConnection(function(err, connexion) {
     if (!err) {
-      var sql = "DELETE FROM photo WHERE pilnum = " + id;
+      var sql = "DELETE FROM course WHERE pilnum = " + id;
       connexion.query(sql, callback);
       connexion.release();
     }
