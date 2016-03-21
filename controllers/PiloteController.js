@@ -221,31 +221,21 @@ module.exports.updateForm = function(request, response) {
 
 module.exports.updateData = function(request, response) {
 
-  var pilprenom = request.body.pilprenom,
-    pilnom = request.body.pilnom,
-    paynum = request.body.paynum,
-    ecunum = request.body.ecunum,
-    pilpoints = request.body.pilpoints,
-    pilpoids = request.body.pilpoids,
-    piltaille = request.body.piltaille,
-    piltexte = request.body.piltexte;
-
   var pildatenaisForm = request.body.pildatenais;
   tab = pildatenaisForm.split("/");
-  var pildatenais = new Date(tab[2], tab[1] - 1, tab[0]);
-  var pilnum = request.body.pilnum;
+  var = new Date(tab[2], tab[1] - 1, tab[0]);
 
   var dataPilote = {
-    pilnum,
-    pilnom,
-    pilprenom,
-    paynum,
-    ecunum,
-    pilpoints,
-    pildatenais,
-    pilpoids,
-    piltaille,
-    piltexte
+    pilnum: request.body.pilnum,
+    pilnom: request.body.pilnom,
+    pilprenom: request.body.pilprenom,
+    paynum: request.body.paynum,
+    ecunum: request.body.ecunum,
+    pilpoints: request.body.pilpoints,
+    pildatenais: pildatenaissance,
+    pilpoids: request.body.pilpoids,
+    piltaille: request.body.piltaille,
+    piltexte: request.body.piltexte
   }
 
   piloteModel.update(dataPilote, function(erreur, resultat) {
@@ -265,30 +255,21 @@ module.exports.updateData = function(request, response) {
 module.exports.addData = function(request, response) {
   response.title = 'Ajout d\'un pilote';
 
-  var pilprenom = request.body.pilprenom,
-    pilnom = request.body.pilnom,
-    paynum = request.body.paynum,
-    ecunum = request.body.ecunum,
-    pilpoints = request.body.pilpoints,
-    pilpoids = request.body.pilpoids,
-    piltaille = request.body.piltaille,
-    piltexte = request.body.piltexte;
-
   var pildatenaisForm = request.body.pildatenais;
   tab = pildatenaisForm.split("/");
-  console.log(tab);
-  var pildatenais = new Date(tab[2], tab[1] - 1, tab[0]);
+  var = new Date(tab[2], tab[1] - 1, tab[0]);
 
   var dataPilote = {
-    pilnom,
-    pilprenom,
-    paynum,
-    ecunum,
-    pilpoints,
-    pildatenais,
-    pilpoids,
-    piltaille,
-    piltexte
+    pilnum: request.body.pilnum,
+    pilnom: request.body.pilnom,
+    pilprenom: request.body.pilprenom,
+    paynum: request.body.paynum,
+    ecunum: request.body.ecunum,
+    pilpoints: request.body.pilpoints,
+    pildatenais: pildatenaissance,
+    pilpoids: request.body.pilpoids,
+    piltaille: request.body.piltaille,
+    piltexte: request.body.piltexte
   }
 
   piloteModel.add(dataPilote, function(erreur, resultat) {
