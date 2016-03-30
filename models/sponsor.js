@@ -55,3 +55,23 @@ module.exports.deleteByPilote = function(id, callback) {
     }
   })
 }
+
+module.exports.deleteSponsorise = function(id, callback) {
+  db.getConnection(function(err, connexion) {
+    if (!err) {
+      var sql = "DELETE FROM sponsorise WHERE sponum = " + id;
+      connexion.query(sql, callback);
+      connexion.release();
+    }
+  })
+}
+
+module.exports.deleteSponsor = function(id, callback) {
+  db.getConnection(function(err, connexion) {
+    if (!err) {
+      var sql = "DELETE FROM sponsor WHERE sponum = " + id;
+      connexion.query(sql, callback);
+      connexion.release();
+    }
+  })
+}

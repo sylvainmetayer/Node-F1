@@ -6,14 +6,6 @@ var PiloteController = require('../controllers/PiloteController');
 var CircuitController = require('../controllers/CircuitController');
 var SponsorController = require('../controllers/SponsorController');
 
-/*
-SYNTAXE DES ROUTES
-/xxx/add : ajout
-/xxx/update : maj
-/xxx/delete : supprimer
-/xxx/:id : details
-*/
-
 var express = require('express');
 var router = express.Router();
 
@@ -53,6 +45,7 @@ router.route('/sponsors')
 router.route('/sponsors/add')
   .get(requireAdmin, SponsorController.addForm)
   .post(requireAdmin, SponsorController.addData);
+router.get('/sponsors/delete/:id', requireAdmin, SponsorController.delete);
 
 /* GESTION DES ECURIES */
 router.get('/ecuries', requireAdmin, EcurieController.GetAllAEcurieAdmin);

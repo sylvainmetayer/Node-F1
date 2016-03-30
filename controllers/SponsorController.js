@@ -42,7 +42,6 @@ module.exports.addData = function(request, response) {
   };
 
   var sponumInserted;
-  // FIXME Test si ça marche encore, sinon on repasse à l'ancienne version.
   var dataEcurie = {
     ecunum:request.body.ecunum,
     sponum:sponumInserted
@@ -80,4 +79,39 @@ module.exports.addData = function(request, response) {
       return;
     }); //Fin async
 
+};
+
+module.exports.delete = function(req, res) {
+
+  /* Dans l'ordre :
+  - delete from sponsorise ;
+  - delete from finance
+  - delete from sponsor
+  */
+  var id = req.params.id;
+  async.series([
+      function(callback) {
+        model.deleteSponsorise(id, function(erreur, resultat) {
+          callback(erreur, resultat);
+        });
+      },
+      function(callback) {
+        modelFinance.deleteFinance(id, function(erreur, resultat) {
+          callback(erreur, resultat);
+        });
+      },
+      function(callback) {
+        model.deleteSponsor(id, function(erreur, resultat) {
+          callback(erreur, resultat);
+        });
+      },
+    ],
+    function(err, result) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.redirect("/admin/sponsors");
+    }
+  );
 };
