@@ -10,12 +10,6 @@ var express = require('express'),
 
 var app = express();
 
-//Debug - 127.0.0.1:50500
-var nomo = require('node-monkey').start({
-  saveOutput: true,
-  suppressOutput: false
-});
-
 app.use(bodyParser.urlencoded({
   extended: true
 }));

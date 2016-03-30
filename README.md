@@ -25,10 +25,13 @@ Merci de respecter la date limte de remise du travail !!!!
 
 **⊂(◉‿◉)つ**
 
-# Informations complémentaire
-Pour installer : npm install -production
+# Informations complémentaires
 
-Pour démarrer l'application npm start
+##Pour installer les modules
+npm install
 
-## En cours de developpement....
-- TODO avant le rendu, passer en devDependencies le node-monkey
+##Pour démarrer l'application
+npm start
+
+##Bugs connus
+- Lors de la modification d'un circuit, si l'on ne change pas l'image, ou que l'on ne reselectionne pas l'image, l'application crash.

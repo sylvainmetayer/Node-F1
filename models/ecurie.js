@@ -82,7 +82,7 @@ module.exports.add = function(data, callback) {
     if (!err) {
       var sql = "INSERT INTO ecurie SET ?";
       connexion.query(sql, data, callback);
-      console.log(sql);
+      console.log(data);
       connexion.release();
     }
   })

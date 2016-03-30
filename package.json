@@ -2,10 +2,10 @@
   "name": "GrandPrix_Sylvain_Metayer",
   "description": "Un exemple Express.js application utilisant MVC Template",
   "private": true,
-  "version": "0.2.4",
+  "version": "0.3.2",
   "contributors": [{
     "name": "Sylvain Metayer",
-    "email": "sylvain_metayer@outlook.fr"
+    "email": "sylvain.metayer@etu.unilim.fr"
   }],
   "scripts": {
     "start": "node app.js"
@@ -32,12 +32,10 @@
     "sha1": "*",
     "fs-extra": "*",
     "formidable": "*",
-    "path": "*",
-    "node-monkey": "*"
+    "path": "*"
   },
   "scripts": {
     "start": "node app.js"
   },
-  "main": "app.js",
-  "license": "MIT"
+  "main": "app.js"
 }
