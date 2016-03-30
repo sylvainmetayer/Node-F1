@@ -35,3 +35,5 @@ npm start
 
 ##Bugs connus
 - Lors de la modification d'un circuit, si l'on ne change pas l'image, ou que l'on ne reselectionne pas l'image, l'application crash.
+
+Plusieurs parties n'ont pas été implémentées, où ne l'ont été que partiellement. Cela est dù à une mauvaise organisation sur les différents projets.
