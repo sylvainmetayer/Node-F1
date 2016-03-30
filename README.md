@@ -33,6 +33,9 @@ npm install
 ##Pour démarrer l'application
 npm start
 
+##Pour accéder au menu admin
+Rajouter /admin dans l'URL pour accéder à la page de login. 
+
 ##Bugs connus
 - Lors de la modification d'un circuit, si l'on ne change pas l'image, ou que l'on ne reselectionne pas l'image, l'application crash.
 
