@@ -3,10 +3,12 @@
   "description": "Un exemple Express.js application utilisant MVC Template",
   "private": true,
   "version": "0.3.2",
-  "contributors": [{
-    "name": "Sylvain Metayer",
-    "email": "sylvain.metayer@etu.unilim.fr"
-  }],
+  "contributors": [
+    {
+      "name": "Sylvain Metayer",
+      "email": "sylvain.metayer@etu.unilim.fr"
+    }
+  ],
   "scripts": {
     "start": "node app.js"
   },
@@ -20,7 +22,7 @@
   "dependencies": {
     "express": "~4",
     "express-handlebars": "*",
-    "express-session": "~1.12",
+    "express-session": "~1.15.6",
     "cookie-parser": "~1.4",
     "body-parser": ">1.10",
     "crypto": "~0.0",
@@ -33,9 +35,6 @@
     "fs-extra": "*",
     "formidable": "*",
     "path": "*"
-  },
-  "scripts": {
-    "start": "node app.js"
   },
   "main": "app.js"
 }
